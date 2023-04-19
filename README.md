@@ -1,2 +1,2 @@
 # utctiny
-URL Shortener with YOURLS
+URL Shortener with YOURLS.
