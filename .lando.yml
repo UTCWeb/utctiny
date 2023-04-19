@@ -1,0 +1,4 @@
+name: utctiny
+recipe: lamp
+config:
+  webroot: .
