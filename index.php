@@ -71,12 +71,12 @@ if ( isset( $_REQUEST['url'] ) && $_REQUEST['url'] != 'http://' ) {
 
 		// Display the form
 		echo <<<HTML
-		<h2>Enter a new URL to shorten</h2>
+		<h2>Enter a URL to shorten</h2>
 		<form method="post" action="">
-		<p><label>URL: <input type="text" class="text" name="url" value="http://" /></label></p>
-		<p><label>Optional custom short URL: $site/<input type="text" class="text" name="keyword" /></label></p>
-		<p><label>Optional title: <input type="text" class="text" name="title" /></label></p>
-		<p><input type="submit" class="button primary" value="Shorten" /></p>
+		<p><label>URL: <input type="text" class="text" name="url" value="https://" /></label></p>
+		<p><label>Custom short URL: $site/<input type="text" class="text" name="keyword" /><em>&nbsp;(optional)</em></label></p>
+		<p><label>Title: <input type="text" class="text" name="title" /></label><em>&nbsp;(optional)</em></p>
+		<p><input type="submit" class="button primary" value="Make it tiny" /></p>
 		</form>
 HTML;
 
@@ -84,7 +84,7 @@ HTML;
 
 ?>
 
-<h2>Bookmarklets</h2>
+<h2>Bookmarks</h2>
 
 <p>Bookmark these links:</p>
 

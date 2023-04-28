@@ -9,3 +9,6 @@ user/config.php
 *.sql.gz
 *.tar.gz
 pvirtualmin/
+
+#IDE
+.idea/

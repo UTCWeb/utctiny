@@ -14,13 +14,13 @@ body {
 	background:white;
 	text-align:left;
 	padding:5px 20px 10px 20px;
-	border-left:3px solid #2a85b3;
-	border-right:3px solid #2a85b3;
-	border-bottom:3px solid #2a85b3;
-	border-top:3px solid #2a85b3;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
+	border-left:3px solid #112e51;
+	border-right:3px solid #112e51;
+	border-bottom:3px solid #112e51;
+	border-top:3px solid #112e51;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	border-radius:1px;
 }
 .hide-if-no-js {display: none;}
 div, p, td {
@@ -28,7 +28,7 @@ div, p, td {
 	font-size: 12px;
 }
 a, a:link, a:active, a:visited {
-	color: #2a85b3;
+	color: #112e51;
 	text-decoration: none;
 }
 a:hover {
@@ -36,7 +36,7 @@ a:hover {
 }
 h1 {height:50px;margin:0;float:right;max-width:500px;}
 h1 a {text-align:right;font-size:20px;float:right;}
-h1 a, h1 a:link, h1 a:active, h1 a:visited {color:#2a85b3}
+h1 a, h1 a:link, h1 a:active, h1 a:visited {color:#112e51}
 h1 a:hover{text-decoration:none;}
 h1 a:hover span{text-decoration:underline;color:#88c0eb}
 #yourls-logo {
@@ -90,11 +90,12 @@ input.button {
 	cursor:pointer;
 }
 input.primary {
-	border:2px solid #2A85B3;
+	font-size: 14px;
+	border:2px solid #112e51;
 	background:#fafafe;
 }
 input.text:focus, textarea:focus {
-	border:2px solid #2A85B3;
+	border:2px solid #112e51;
 	margin:0px;
 }
 tr.edit-row  td {
@@ -239,7 +240,7 @@ td.actions .button_stats {
 	padding:0 2px;
 }
 a.bookmarklet {
-	border:2px solid #2a85b3;
+	border:2px solid #112e51;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -258,20 +259,20 @@ a.bookmarklet:hover {
 	margin-top:20px;
 }
 #footer p {
-	padding:10px;
+	padding:1px;
 	background:white;
 	margin:0 auto;
 	max-width:950px;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	border-radius:10px;
-	border:2px solid #2a85b3;
-	-moz-border-radius-bottomleft:30px;
-	-moz-border-radius-bottomright:30px;
-	-webkit-border-bottom-left-radius:25px;
-	-webkit-border-bottom-right-radius:25px;
-	border-bottom-left-radius:25px;
-	border-bottom-right-radius:25px;
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	border-radius:1px;
+	border:2px solid #112e51;
+	-moz-border-radius-bottomleft:1px;
+	-moz-border-radius-bottomright:1px;
+	-webkit-border-bottom-left-radius:1px;
+	-webkit-border-bottom-right-radius:1px;
+	border-bottom-left-radius:1px;
+	border-bottom-right-radius:1px;
 }
 #footer p a {
 	background:#fff url(../images/favicon.svg) 2px center no-repeat;
@@ -279,7 +280,7 @@ a.bookmarklet:hover {
 }
 
 .notice {
-	border:1px solid #2a85b3;
+	border:1px solid #112e51;
 	background: #F3FAFD;
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
