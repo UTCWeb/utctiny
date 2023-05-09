@@ -1,2 +1,14 @@
 .DS_Store
+.htaccess
+includes/vendor/*
+!includes/vendor/.gitkeep
+user/config.php
 
+# SQL
+*.sql
+*.sql.gz
+*.tar.gz
+pvirtualmin/
+
+#IDE
+.idea/
