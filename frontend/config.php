@@ -20,13 +20,13 @@ define('logo', '/frontend/assets/img/logo-black.png');
 
 // Enable reCAPTCHA V3
 // It is highly recommended you use reCAPTCHA V3. It will stop spam. You can get a site and secret key from here: https://www.google.com/recaptcha/admin/create
-define("enableRecaptcha", false);
+define("enableRecaptcha", true);
 
 // reCAPTCHA V3 Site Key
-define("recaptchaV3SiteKey", 'YOUR_SITE_KEY_HERE');
+define("recaptchaV3SiteKey", '6LdAwAspAAAAAGVqSRmR1ngmCOVUg2v5pLzIFVc_');
 
 // reCAPTCHA V3 Secret Key
-define("recaptchaV3SecretKey", 'YOUR_SECRET_KEY_HERE');
+//define("recaptchaV3SecretKey", 'YOUR_SECRET_KEY_HERE');
 
 // Enables the custom URL field
 // true or false

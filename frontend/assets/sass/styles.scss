@@ -22,7 +22,7 @@ $border-radius: 6px;
 .bold-link {
     font-family: $montserrat;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: lowercase;
 }
 
 @include media-breakpoint-down(md) {

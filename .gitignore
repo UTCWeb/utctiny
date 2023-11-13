@@ -2,7 +2,13 @@
 .htaccess
 includes/vendor/*
 !includes/vendor/.gitkeep
+
+# environment-specific config
 user/config.php
+
+# frontend tooling
+frontend/node_modules
+frontend/package-lock.json
 
 # SQL
 *.sql
