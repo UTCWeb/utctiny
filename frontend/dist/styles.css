@@ -12587,7 +12587,7 @@ textarea.form-control-lg {
 .bold-link {
   font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
 @media (max-width: 767.98px) {
