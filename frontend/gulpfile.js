@@ -1,14 +1,20 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass')(require('sass'));
+var browserSync = require('browser-sync').create();
 
 gulp.task('sass', () => {
-    return gulp.src("./assets/sass/*.scss")
+    return gulp.src("assets/sass/*.scss")
         .pipe(sass())
         .pipe(gulp.dest("dist/"))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('start', gulp.series('sass', function () {
-    gulp.watch("sass/*.scss", gulp.series('sass'));
+    browserSync.init({
+        proxy: "utctiny.lndo.site"
+    });
+    gulp.watch("assets/sass/*.scss", gulp.series('sass'));
+    gulp.watch("*.php").on('change', browserSync.reload);
 }));
 
 gulp.task('default', gulp.series('start'));
