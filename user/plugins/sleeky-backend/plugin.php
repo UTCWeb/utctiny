@@ -140,7 +140,7 @@ function sleeky_settings_update() {
 }
 
 // Hide admin links for non-authenticated users
-if (yourls_is_valid_user() != 1) {
+if(defined( 'YOURLS_USER' ) ) {
 	echo <<<HEAD
 		<style>ul#admin_menu li:not(.frontend_link) {display: none}</style>
 HEAD;

@@ -53,7 +53,7 @@ $footerLinks = [
     "About"   =>  "https://sleeky.flynntes.com/",
     "Contact" =>  "https://yourls.org/",
     "Legal"   =>  "https://yourls.org/",
-    "Admin"   =>  "/admin"
+    "Admin"   =>  "/admin/"
 ];
 
 ?>
