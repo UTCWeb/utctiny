@@ -14,10 +14,11 @@ if( !defined( 'YOURLS_ABSPATH' ) ) die();
 // returns true if the phpCAS environment is set up right
 function cas_environment_check() {
 	$required_params = array(
-		'PHPCAS_PATH', // path to phpCAS loader file (CAS.php)
-		'PHPCAS_HOST', // full hostname of your CAS server
-		'PHPCAS_CONTEXT', // context of the CAS server (webapp subdirectory)
-		'PHPCAS_CERTCHAIN_PATH', // path to a .pem file containing 1 or more CA certs
+		'PHPCAS_PATH'=>'/pvirtualmin/go/includes/vendor/apereo/phpcas/CAS.php', // path to phpCAS loader file (CAS.php)
+		'PHPCAS_HOST'=>'cas.utc.edu', // full hostname of your CAS server
+		'PHPCAS_CONTEXT'=>'/cas', // context of the CAS server (webapp subdirectory)
+        //'PHPCAS_CERTCHAIN_PATH'=>'/etc/pki/tls/cert.pem' // RHEL 8
+        'PHPCAS_CERTCHAIN_PATH'=>'/app/user/plugins/cas/ca-bundle.crt' // Lando Testing
 	);
 
 	foreach ($required_params as $pname) {
@@ -63,8 +64,9 @@ function cas_page_hook( $args ) {
 		require_once PHPCAS_PATH; // /*$phpcas_path .*/ 'phpcas/CAS.php';
 
 		//phpCAS::setDebug();
-		phpCAS::client(CAS_VERSION_2_0, PHPCAS_HOST, PHPCAS_PORT, PHPCAS_CONTEXT);
+		phpCAS::client(CAS_VERSION_2_0, PHPCAS_HOST, PHPCAS_PORT, PHPCAS_CONTEXT, 'PHPCAS_CLIENTURL');
 		phpCAS::setCasServerCACert(PHPCAS_CERTCHAIN_PATH);
+        //phpCAS::setNoCasServerValidation();
 		phpCAS::forceAuthentication();
 		// then set up external-auth cookie
 		// or just use PHP session management
