@@ -18,7 +18,7 @@ function cas_environment_check() {
 		'PHPCAS_HOST'=>'cas.utc.edu', // full hostname of your CAS server
 		'PHPCAS_CONTEXT'=>'/cas', // context of the CAS server (webapp subdirectory)
         //'PHPCAS_CERTCHAIN_PATH'=>'/etc/pki/tls/cert.pem' // RHEL 8
-        'PHPCAS_CERTCHAIN_PATH'=>'/app/user/plugins/cas/ca-bundle.crt' // Lando Testing
+        'PHPCAS_CERTCHAIN_PATH'=>'YOURLS_ABSPATH'.'/user/plugins/cas/ca-bundle.crt' // Lando Testing
 	);
 
 	foreach ($required_params as $pname) {
