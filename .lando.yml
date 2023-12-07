@@ -5,3 +5,8 @@ config:
   webroot: .
   database: mariadb
   xdebug: false
+services:
+  appserver:
+    config:
+      server: config/httpd.conf
+      vhosts: config/default-ssl.conf
