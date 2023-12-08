@@ -52,8 +52,6 @@ define('colour', '#205493');
 $footerLinks = [
     "About"   =>  "https://github.com/utctiny",
     "Contact" =>  "https://www.utc.edu/web",
-//    "Legal"   =>  "https://yourls.org/",
+    //    "Legal"   =>  "https://yourls.org/",
     "Admin"   =>  "/admin/"
 ];
-
-?>
