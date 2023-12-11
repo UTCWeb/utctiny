@@ -4,7 +4,9 @@
 
 <?php
 	// Start YOURLS engine
+    define( 'YOURLS_ADMIN', true );//require auth
 	require_once( dirname(__FILE__).'/includes/load-yourls.php' );
+    yourls_maybe_require_auth();//require auth
 
 	// URL of the public interface
 	$page = YOURLS_SITE . '/index.php' ;
