@@ -4,19 +4,19 @@
 // GENERAL
 
 // Page title for your site
-define('title', 'Sleeky theme for YOURLS');
+define('title', 'UTC URL Shortener');
 
 // The short title of your site, used in the footer and in some sub pages
-define('shortTitle', 'Sleeky');
+define('shortTitle', 'go.UTC.edu');
 
 // A description of your site, shown on the homepage.
-define('description', 'A quick description on why your site is so fantastic, what it does and why people should definitely start using it. Oh, and how it’s free.');
+define('description', 'Long URLs are annoying. Shorten and share, Mocs.');
 
 // The favicon for your site
 define('favicon', '/frontend/assets/img/favicon.ico');
 
 // Logo for your site, displayed on home page
-define('logo', '/frontend/assets/img/logo-black.png');
+define('logo', '/frontend/assets/img/utc-power-c-reverse.svg');
 
 // Enable reCAPTCHA V3
 // It is highly recommended you use reCAPTCHA V3. It will stop spam. You can get a site and secret key from here: https://www.google.com/recaptcha/admin/create
@@ -50,8 +50,6 @@ define('colour', '#205493');
 // The array follows a title link structure:
 // "TITLE" => "LINK",
 $footerLinks = [
-    "About"   =>  "https://github.com/utctiny",
-    "Contact" =>  "https://www.utc.edu/web",
-    //    "Legal"   =>  "https://yourls.org/",
+    "About"   =>  "https://github.com/UTCWeb/utctiny",
     "Admin"   =>  "/admin/"
 ];
