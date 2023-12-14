@@ -10,6 +10,10 @@ user/config.php
 frontend/node_modules
 frontend/package-lock.json
 
+# backend tooling
+user/plugins/sleeky-backend/node_modules
+user/plugins/sleeky-backend/package-lock.json
+
 # SQL
 *.sql
 *.sql.gz

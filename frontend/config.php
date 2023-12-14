@@ -10,13 +10,13 @@ define('title', 'UTC URL Shortener');
 define('shortTitle', 'go.UTC.edu');
 
 // A description of your site, shown on the homepage.
-define('description', 'Long URLs are annoying. Shorten and share, Mocs.');
+define('description', '<strong>Long URLs stink.</strong> Shorten and share, Mocs.<br /><small><em>Short links you create with go.utc.edu are associated with your UTCID and may be reviewed, edited, or deleted.</em></small>');
 
 // The favicon for your site
 define('favicon', '/frontend/assets/img/favicon.ico');
 
 // Logo for your site, displayed on home page
-define('logo', '/frontend/assets/img/utc-power-c-reverse.svg');
+define('logo', '/frontend/assets/svg/utc-wordmark-reverse.svg');
 
 // Enable reCAPTCHA V3
 // It is highly recommended you use reCAPTCHA V3. It will stop spam. You can get a site and secret key from here: https://www.google.com/recaptcha/admin/create
@@ -51,5 +51,6 @@ define('colour', '#112E51');
 // "TITLE" => "LINK",
 $footerLinks = [
     "About"   =>  "https://github.com/UTCWeb/utctiny",
-    "Admin"   =>  "/admin/"
+    "Admin"   =>  "/admin/",
+    "Privacy" => "https://www.utc.edu/about/privacy"
 ];
