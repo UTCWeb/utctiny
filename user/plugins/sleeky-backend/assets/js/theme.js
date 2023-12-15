@@ -35,9 +35,9 @@ $( document ).ready(function() {
     console.log("Login page");
 
     if (theme == "light") {
-      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/logo_black.png">`);
+      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/utc-wordmark-reverse.svg">`);
     } else if (theme == "dark") {
-      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/logo_white.png">`);
+      $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/utc-wordmark-reverse.svg">`);
     }
 
     
@@ -105,7 +105,7 @@ $( document ).ready(function() {
 
   function handleNav() {
     // Add logo
-    $("#wrap").prepend(`<img class="logo" src="${url}/assets/img/logo_white.png">`);
+    $("#wrap").prepend(`<img class="logo" src="${url}/assets/img/utc-wordmark-reverse.svg">`);
 
     // Add mobile nav hamburger
     $("#wrap").prepend(`<div class="nav-open" id="navOpen"><i class="material-icons">menu</i></div>`);
