@@ -10,10 +10,10 @@ define('title', 'UTC URL Shortener');
 define('shortTitle', 'go.UTC.edu');
 
 // A description of your site, shown on the homepage.
-define('description', '<strong>Long URLs annoy.</strong> Shorten and share, Mocs.<br /><small><em>Short links you create with go.utc.edu are associated with your UTCID and may be reviewed, edited, or deleted.</em></small>');
+define('description', '<strong>Long URLs annoy.</strong> Shorten and share, Mocs.<br /><small><em>Short links and URLs entered at go.UTC.edu are actively monitored by UTC IT.</em></small>');
 
 // The favicon for your site
-define('favicon', '/user/plugin/yourls-favicon/assets/favicon.ico?ver=9');
+define('favicon', 'user/plugins/yourls-favicon/assets/favicon.ico');
 
 // Logo for your site, displayed on home page
 define('logo', '/frontend/assets/svg/utc-wordmark-reverse.svg');
@@ -50,7 +50,7 @@ define('colour', '#112E51');
 // The array follows a title link structure:
 // "TITLE" => "LINK",
 $footerLinks = [
-    "About"   =>  "https://github.com/UTCWeb/utctiny",
-    "Admin"   =>  "/admin/",
-    "Privacy" => "https://www.utc.edu/about/privacy"
+    "About"   =>  "https://github.com/UTCWeb/utctiny#utctiny",
+    "Privacy" => "https://www.utc.edu/about/privacy",
+    "Manage My Links"   =>  "/admin/",
 ];

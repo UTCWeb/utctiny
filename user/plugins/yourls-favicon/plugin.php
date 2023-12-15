@@ -3,9 +3,9 @@
 Plugin Name: YOURLS Favicon
 Plugin URI: https://github.com/yourls/yourls-favicon
 Description: Displays a fancy YOURLS favicon in all flavors (Chrome, Safari, Android...)
-Version: 1.0
-Author: Ozh
-Author URI: https://ozh.org/
+Version: 1.0.1
+Author: Ozh/UTCGilligan
+Author URI: https://github.com/UTCWeb/utctiny
 */
 
 // No direct call
@@ -15,7 +15,7 @@ yourls_add_filter('shunt_html_favicon', 'yourls_plugin_favicon');
 
 function yourls_plugin_favicon() {
     $url = yourls_plugin_url(__DIR__).'/assets';
-    $ver = "YOURLS_VERSION";
+    $ver = YOURLS_VERSION;
 
     echo <<<HTML
 

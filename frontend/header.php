@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 include 'functions.php';
+$ver = "YOURLS_VERSION";
 ?>
 <html lang="en">
 
@@ -9,7 +10,7 @@ include 'functions.php';
     <meta http-equiv="X-UA-patible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo description ?>">
-    <link rel="icon" href="<?php echo favicon ?>">
+    <link rel="icon" href="<?php echo favicon ?>?ver=20231214-2229">
 
     <title><?php echo title ?></title>
 
