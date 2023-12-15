@@ -1,7 +1,6 @@
 <?php
 include 'config.php';
 include 'functions.php';
-$ver = "YOURLS_VERSION";
 ?>
 <html lang="en">
 
