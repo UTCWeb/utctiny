@@ -10,10 +10,10 @@ define('title', 'UTC URL Shortener');
 define('shortTitle', 'go.UTC.edu');
 
 // A description of your site, shown on the homepage.
-define('description', '<strong>Long URLs stink.</strong> Shorten and share, Mocs.<br /><small><em>Short links you create with go.utc.edu are associated with your UTCID and may be reviewed, edited, or deleted.</em></small>');
+define('description', '<strong>Long URLs annoy.</strong> Shorten and share, Mocs.<br /><small><em>Short links you create with go.utc.edu are associated with your UTCID and may be reviewed, edited, or deleted.</em></small>');
 
 // The favicon for your site
-define('favicon', '/frontend/assets/img/favicon.ico');
+define('favicon', '/user/plugin/yourls-favicon/assets/favicon.ico?ver=9');
 
 // Logo for your site, displayed on home page
 define('logo', '/frontend/assets/svg/utc-wordmark-reverse.svg');
