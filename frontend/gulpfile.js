@@ -15,7 +15,7 @@ gulp.task('start', gulp.series('sass', function () {
     });
     gulp.watch("assets/sass/*.scss", gulp.series('sass'));
     gulp.watch("assets/img/*.png").on('change', browserSync.reload);
-    gulp.watch("assets/img/*.svg").on('change', browserSync.reload);
+    gulp.watch("assets/svg/*.svg").on('change', browserSync.reload);
     gulp.watch("*.php").on('change', browserSync.reload);
 }));
 
