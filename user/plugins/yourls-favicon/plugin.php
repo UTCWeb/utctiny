@@ -23,9 +23,9 @@ function yourls_plugin_favicon() {
     <link rel="icon" type="image/png" sizes="32x32" href="$url/favicon-32x32.png?v=$ver">
     <link rel="icon" type="image/png" sizes="16x16" href="$url/favicon-16x16.png?v=$ver">
     <link rel="manifest" href="$url/site.webmanifest?v=$ver">
-    <link rel="mask-icon" href="$url/safari-pinned-tab.svg?v=$ver" color="#5bbad5">
+    <link rel="mask-icon" href="$url/safari-pinned-tab.svg?v=$ver" color="#112e51">
     <link rel="shortcut icon" href="$url/favicon.ico?v=$ver">
-    <meta name="msapplication-TileColor" content="#4ea3c5">
+    <meta name="msapplication-TileColor" content="#112e51">
     <meta name="msapplication-TileImage" content="$url/mstile-144x144.png">
     <meta name="msapplication-config" content="$url/browserconfig.xml?v=$ver">
     <meta name="theme-color" content="#112e51">
