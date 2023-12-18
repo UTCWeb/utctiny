@@ -28,7 +28,7 @@ function yourls_plugin_favicon() {
     <meta name="msapplication-TileColor" content="#4ea3c5">
     <meta name="msapplication-TileImage" content="$url/mstile-144x144.png">
     <meta name="msapplication-config" content="$url/browserconfig.xml?v=$ver">
-    <meta name="theme-color" content="#4ea3c5">
+    <meta name="theme-color" content="#112e51">
 
 HTML;
 
