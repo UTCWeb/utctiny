@@ -86,7 +86,7 @@
 						</div>
 
 						<div class="card-body px-5 pb-5">
-							<h2 class="text-uppercase text-center">Your shortened link</h2>
+							<h2 class="text-uppercase text-center">Your short link</h2>
 							
 							<div class="row justify-content-center">
 								<div class="col-10">
@@ -94,13 +94,13 @@
 										<input type="text" class="form-control text-uppercase" value="<?php echo $shorturl; ?>" required>
 										<button class="btn btn-primary text-uppercase py-2 px-5 mt-2 mt-md-0" type="submit" id="copy-button" data-shorturl="<?php echo $shorturl; ?>">Copy</button>
 									</div>
-									<span class="info">View info &amp; stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
+									<span class="info">View info and stats at <a href="<?php echo $shorturl; ?>+"><?php echo $url; ?>+</a></span>
 								</div>
 							</div>
 						</div>
 					<?php else: ?>
 						<div class="text-center">
-							<img src="<?php echo YOURLS_SITE ?><?php echo logo ?>" alt="Logo" width="95px" class="mt-n5">
+							<img src="<?php echo YOURLS_SITE ?><?php echo logo ?>" alt="UTC Logo" width="300px" style="margin-top:-4rem;">
 						</div>
 						<div class="card-body px-md-5">
 							<p><?php echo description ?></p>
@@ -109,14 +109,14 @@
 								<?php if (strpos($message,'added') === false): ?>
 									<div class="alert alert-danger alert-dismissible fade show" role="alert">
 										<span>Oh no, <?php echo $message; ?>!</span>
-										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 									</div>	    
 								<?php endif; ?>
 							<?php endif; ?>
 
 							<form id="shortenlink" method="post" action="">
 								<div class="input-group input-group-block mt-4 mb-3">
-									<input type="url" name="url" id="url" class="form-control text-uppercase" placeholder="PASTE URL, SHORTEN &amp; SHARE" aria-label="PASTE URL, SHORTEN &amp; SHARE" aria-describedby="shorten-button" required>
+									<input type="url" name="url" id="url" class="form-control text-uppercase" placeholder="PASTE URL, SHORTEN and SHARE" aria-label="PASTE URL, SHORTEN &amp; SHARE" aria-describedby="shorten-button" required>
 									<input class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0" type="submit" id="shorten-button" value="Shorten" />
 								</div>
 								<?php if (enableCustomURL): ?>

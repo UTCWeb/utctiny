@@ -513,12 +513,12 @@ nav {
 }
 
 img.logo {
-  width: 90px;
+  width: 200px;
   position: fixed;
   top: 0;
   left: 0;
   background: $accent;
-  padding: 9px 150px 8px 20px;
+  padding: 13px 35px 13px 25px;
   z-index: 20;
 }
 
@@ -807,7 +807,7 @@ body > div > pre {
   }
 
   img.logo {
-    padding: 9px 100% 8px 20px;
+    padding: 11px 100% 15px 20px;
   }
 
   .nav-open {
@@ -829,7 +829,7 @@ body > div > pre {
       padding: 50px;
       display: none;
       @if ($theme == "light") {
-        background: darken($accent, 10%);
+        background: $accent;
       } @else {
         background: $default;
       }
