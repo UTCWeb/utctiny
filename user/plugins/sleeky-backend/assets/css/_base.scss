@@ -829,7 +829,7 @@ body > div > pre {
       padding: 50px;
       display: none;
       @if ($theme == "light") {
-        background: darken($accent, 10%);
+        background: $accent;
       } @else {
         background: $default;
       }
