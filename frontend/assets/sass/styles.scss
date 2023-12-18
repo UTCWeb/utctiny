@@ -1,13 +1,13 @@
 // Font Imports
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Raleway&display=swap');
 
-$roboto: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$raleway: "Raleway", system-ui, -apple-system, "Segoe UI", Raleway, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $oswald: "Oswald", system-ui, -apple-system, "Segoe UI", Oswald, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 // Bootstrap Overrides
 $enable-negative-margins: true;
-$font-family-sans-serif: $roboto;
+$font-family-sans-serif: $raleway;
 $input-btn-font-family: $oswald;
 $headings-font-family: $oswald;
 $input-bg: #ebebeb;
