@@ -28,7 +28,7 @@ function yourls_plugin_favicon() {
     <link rel="mask-icon" href="$url/favicon.svg?v=$ver" color="#112e51">
     <link rel="shortcut icon" href="$url/favicon.ico?v=$ver">
     <meta name="msapplication-TileColor" content="#112e51">
-    <meta name="msapplication-TileImage" content="$url/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="$url/mstile-144x144.png?v=$ver">
     <meta name="msapplication-config" content="$url/browserconfig.xml?v=$ver">
     <meta name="theme-color" content="#112e51">
 
