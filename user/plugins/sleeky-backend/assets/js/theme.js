@@ -1,7 +1,7 @@
 // Sleeky Admin Theme
 // 2019 Flynn Tesoriero
 
-console.log("Sleeky Admin Theme Running");
+console.log("Admin Theme Running");
 
 $( document ).ready(function() {
   // Get the theme URL
@@ -24,10 +24,10 @@ $( document ).ready(function() {
   console.log("Theme is", theme)
 
   // Update favicon
-  $('link[rel="shortcut icon"]').attr('href', url + "/assets/img/favicon.ico");
+//  $('link[rel="shortcut icon"]').attr('href', url + "/assets/img/favicon.ico");
 
   // Update meta viewport
-  $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+//  $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
 
   // Detect pages
   if ($("body").hasClass("login")) {
