@@ -13,7 +13,7 @@ define('shortTitle', 'go.UTC.edu');
 define('description', '<strong>Long URLs annoy.</strong> Shorten and share, Mocs.<br /><small><em>Short links and URLs entered at go.UTC.edu are actively monitored by UTC IT.</em></small>');
 
 // The favicon for your site
-define('favicon', 'user/plugins/yourls-favicon/assets/favicon.ico');
+define('favicon', 'user/plugins/yourls-favicon/assets/favicon.svg');
 
 // Logo for your site, displayed on home page
 define('logo', '/frontend/assets/svg/utc-wordmark-reverse.svg');

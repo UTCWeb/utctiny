@@ -705,14 +705,14 @@ code {
 
   a.bookmarklet {
     border: none;
-    background: #ffffff url(/images/favicon.gif) 4px center no-repeat;
+    background: #ffffff url(/user/plugins/yourls-favicon/assets/favicon.gif) 4px center no-repeat;
     color: #3c3c3c;
     border-radius: 1px;
     padding: 7px 7px 7px 25px;
     color: darken(white, 80%) !important;
 
     &:hover {
-      background: #e0e0e0 url(/images/favicon.gif) 4px center no-repeat;
+      background: #e0e0e0 url(/user/plugins/yourls-favicon/assets/favicon.gif) 4px center no-repeat;
     }
   }
 
