@@ -1,7 +1,12 @@
 name: utctiny
 recipe: lamp
 config:
-  php: '8.1'
+  php: '8.2'
   webroot: .
   database: mariadb
   xdebug: false
+services:
+  appserver:
+    config:
+      server: config/httpd.conf
+      vhosts: config/default-ssl.conf

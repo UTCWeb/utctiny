@@ -1,0 +1,22 @@
+// Sleeky Admin Light UI Theme
+
+// Define theme
+$theme: "light";
+
+// Set up our basic colour scheme
+$lightest: #dde6ee;
+$light:    white;
+$default:  #f7f7f7;
+$darker:   #efefef;
+$darkest:  #161616;
+
+// Main Base Accent color
+$accent:    #112e51;
+// $accent_secondary:  black;
+
+// Text colours
+$title:    #1d1d1d;
+$text:     #313131;
+
+// Import the base styles
+@import "../base.scss";

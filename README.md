@@ -1,4 +1,5 @@
 # utctiny
+
 URL Shortener with [YOURLS](https://yourls.org).
 
 ### Contributing
@@ -11,5 +12,7 @@ URL Shortener with [YOURLS](https://yourls.org).
 - Create a new Pull Request
 
 ### Collaborators
+
 - [UTCGilligan](https://github.com/UTCGilligan)
 - [MajorS](https://github.com/majorschwartz)
+- [DanielD](https://github.com/danielduggin2)
