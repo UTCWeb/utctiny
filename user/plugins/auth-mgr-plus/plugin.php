@@ -237,8 +237,11 @@ function amp_require_capability( $capability ) {
     if ( !amp_have_capability( $capability ) ) {
         // If the user can't view admin interface, return a plain error.
         if ( !amp_have_capability( ampCap::ShowAdmin ) ) {
-            //	header("HTTP/1.0 403 Forbidden");
-            die('Require permissions to show admin interface.');
+            header("HTTP/1.0 403 Forbidden");
+            $errorpage = file_get_contents('user/plugins/auth-mgr-plus/403-error.html');
+            yourls_status_header( 403 );
+            echo $errorpage;
+            die();
         }
         // Otherwise, render errors in admin interface
         yourls_redirect( yourls_admin_url( '?access=denied' ), 302 );
