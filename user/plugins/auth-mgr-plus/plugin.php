@@ -15,6 +15,7 @@ if( !defined( 'YOURLS_ABSPATH' ) ) die();
 
 class ampRoles {
     const Administrator = 'Administrator';
+    const Supereditor   = 'Supereditor';
     const Editor        = 'Editor';
     const Contributor   = 'Contributor';
 }
@@ -241,8 +242,7 @@ function amp_require_capability( $capability ) {
             $errorpage = file_get_contents('user/plugins/auth-mgr-plus/403-error.html');
             yourls_status_header( 403 );
             echo $errorpage;
-            die();
-        }
+            die();        }
         // Otherwise, render errors in admin interface
         yourls_redirect( yourls_admin_url( '?access=denied' ), 302 );
         die();
@@ -276,8 +276,8 @@ function amp_have_capability( $capability ) {
                 if (amp_user_has_role($user, $rolename))
                     $user_caps = array_merge($user_caps, $rolecaps);
         }
-                elseif ( isset( $amp_default_role )  && in_array ($amp_default_role, array_keys( $amp_role_capabilities ) ) )
-                    $user_caps = $amp_role_capabilities [ $amp_default_role ];
+        elseif ( isset( $amp_default_role )  && in_array ($amp_default_role, array_keys( $amp_role_capabilities ) ) )
+            $user_caps = $amp_role_capabilities [ $amp_default_role ];
 
         $user_caps = array_unique( $user_caps );
         // Is the requested capability in this list?
@@ -427,7 +427,15 @@ function amp_env_check() {
     global $amp_allowed_plugin_pages;
 
     if ( !isset( $amp_anon_capabilities) ) {
-        $amp_anon_capabilities = array();
+        $amp_anon_capabilities = array(
+            ampCap::ShowAdmin,
+            ampCap::AddURL,
+            ampCap::EditURL,
+            ampCap::DeleteURL,
+            ampCap::ShareURL,
+            ampCap::APIu,
+            ampCap::ViewStats,
+        );
     }
 
     if ( !isset( $amp_role_capabilities) ) {
@@ -443,6 +451,19 @@ function amp_env_check() {
                 ampCap::ManageUsrsURL,
                 ampCap::ManagePlugins,
                 ampCap::API,
+                ampCap::APIu,
+                ampCap::ViewStats,
+                ampCap::ViewAll,
+            ),
+            ampRoles::Supereditor => array(
+                ampCap::ShowAdmin,
+                ampCap::AddURL,
+                ampCap::EditURL,
+                ampCap::DeleteURL,
+                ampCap::ShareURL,
+                ampCap::Traceless,
+                ampCap::ManageAnonURL,
+                ampCap::ManageUsrsURL,
                 ampCap::APIu,
                 ampCap::ViewStats,
                 ampCap::ViewAll,
@@ -483,6 +504,7 @@ function amp_env_check() {
 
     if ( !isset( $amp_allowed_plugin_pages ) ) {
         $amp_allowed_plugin_pages = array(
+            'sleeky-backend'
         );
     }
 
