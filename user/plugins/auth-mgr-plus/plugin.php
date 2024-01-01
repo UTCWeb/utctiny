@@ -242,7 +242,8 @@ function amp_require_capability( $capability ) {
             $errorpage = file_get_contents('user/plugins/auth-mgr-plus/403-error.html');
             yourls_status_header( 403 );
             echo $errorpage;
-            die();        }
+            die();
+        }
         // Otherwise, render errors in admin interface
         yourls_redirect( yourls_admin_url( '?access=denied' ), 302 );
         die();
@@ -504,7 +505,7 @@ function amp_env_check() {
 
     if ( !isset( $amp_allowed_plugin_pages ) ) {
         $amp_allowed_plugin_pages = array(
-            'sleeky-backend'
+            'sleeky_backend'
         );
     }
 
