@@ -434,7 +434,6 @@ function amp_env_check() {
             ampCap::EditURL,
             ampCap::DeleteURL,
             ampCap::ShareURL,
-            ampCap::APIu,
             ampCap::ViewStats,
         );
     }
