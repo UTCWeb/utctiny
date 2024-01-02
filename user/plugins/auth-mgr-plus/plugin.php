@@ -503,9 +503,7 @@ function amp_env_check() {
     }
 
     if ( !isset( $amp_allowed_plugin_pages ) ) {
-        $amp_allowed_plugin_pages = array(
-            'sleeky_settings'
-        );
+        $amp_allowed_plugin_pages = array();
     }
 
     // convert role assignment table to lower case if it hasn't been done already
