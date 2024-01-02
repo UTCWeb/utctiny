@@ -505,7 +505,7 @@ function amp_env_check() {
 
     if ( !isset( $amp_allowed_plugin_pages ) ) {
         $amp_allowed_plugin_pages = array(
-            'sleeky_backend'
+            'sleeky_settings'
         );
     }
 
