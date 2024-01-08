@@ -95,7 +95,7 @@ function sean_yourls_qrcode( $request ) {
 yourls_add_filter( 'action_links', 'sean_add_qrcode_button' );
 function sean_add_qrcode_button( $action_links, $keyword, $url, $ip, $clicks, $timestamp ) {
 	$surl = yourls_link( $keyword );
-	$id = yourls_string2htmlid( $keyword ); // used as HTML #id
+	$id = yourls_unique_element_id( $keyword ); // used as HTML #id
 
 	// We're adding .qr to the end of the URL, right?
 	$qr = '.qr';
