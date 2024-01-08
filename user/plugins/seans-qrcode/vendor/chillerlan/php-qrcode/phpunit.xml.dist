@@ -16,7 +16,7 @@
 		</report>
 	</coverage>
 	<testsuites>
-		<testsuite name="php-settings-container test suite">
+		<testsuite name="php-qrcode test suite">
 			<directory suffix=".php">./tests/</directory>
 		</testsuite>
 	</testsuites>

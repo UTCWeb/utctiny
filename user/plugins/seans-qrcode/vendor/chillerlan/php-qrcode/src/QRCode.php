@@ -117,23 +117,23 @@ class QRCode{
 	 * @var string[][]
 	 */
 	public const OUTPUT_MODES = [
-		QRMarkup::class => [
+		QRMarkup::class  => [
 			self::OUTPUT_MARKUP_SVG,
 			self::OUTPUT_MARKUP_HTML,
 		],
-		QRImage::class => [
+		QRImage::class   => [
 			self::OUTPUT_IMAGE_PNG,
 			self::OUTPUT_IMAGE_GIF,
 			self::OUTPUT_IMAGE_JPG,
 		],
-		QRString::class => [
+		QRString::class  => [
 			self::OUTPUT_STRING_JSON,
 			self::OUTPUT_STRING_TEXT,
 		],
 		QRImagick::class => [
 			self::OUTPUT_IMAGICK,
 		],
-		QRFpdf::class => [
+		QRFpdf::class    => [
 			self::OUTPUT_FPDF
 		]
 	];
@@ -240,6 +240,7 @@ class QRCode{
 	protected function initOutputInterface(string $data):QROutputInterface{
 
 		if($this->options->outputType === $this::OUTPUT_CUSTOM && class_exists($this->options->outputInterface)){
+			/** @phan-suppress-next-line PhanTypeExpectedObjectOrClassName */
 			return new $this->options->outputInterface($this->options, $this->getMatrix($data));
 		}
 
@@ -306,7 +307,7 @@ class QRCode{
 	 * a dummy
 	 */
 	public function isByte(string $data):bool{
-		return !empty($data);
+		return $data !== '';
 	}
 
 }
