@@ -2,6 +2,7 @@
 .htaccess
 includes/vendor/*
 !includes/vendor/.gitkeep
+user/plugins/*/vendor/*
 
 # environment-specific config
 user/config.php
