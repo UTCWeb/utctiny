@@ -121,7 +121,7 @@
 								</div>
 								<?php if (enableCustomURL): ?>
 									<a class="btn btn-sm btn-white text-black-50 text-uppercase" data-bs-toggle="collapse" href="#customise-link" role="button" aria-expanded="false" aria-controls="customise-link">
-										<img src="<?php echo YOURLS_SITE ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customise Link
+										<img src="<?php echo YOURLS_SITE ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customize Link
 									</a>
 									<div class="collapse" id="customise-link">
 										<div class="mt-2 card card-body">
