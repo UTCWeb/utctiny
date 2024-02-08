@@ -50,7 +50,7 @@ define('colour', '#112E51');
 // The array follows a title link structure:
 // "TITLE" => "LINK",
 $footerLinks = [
-    "About"   =>  "https://github.com/UTCWeb/utctiny#utctiny",
+    "About"   =>  "https://utc.teamdynamix.com/TDClient/2717/Portal/Requests/ServiceDet?ID=50665",
     "Privacy" => "https://www.utc.edu/about/privacy",
     "Manage My Links"   =>  "/admin/",
 ];
