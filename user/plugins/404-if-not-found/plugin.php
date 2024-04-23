@@ -21,27 +21,28 @@ yourls_add_action('infos_keyword_not_found', 'ozh_404_if_not_found', 999);
 yourls_add_action('redirect_no_keyword', 'ozh_404_if_not_found', 999);
 yourls_add_action('infos_no_keyword', 'ozh_404_if_not_found', 999);
 
-// Display a default 404 not found page
-function ozh_404_if_not_found() {
-    yourls_status_header(404);
-    $notfound = '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">'
-              . '<html><head>'
-              . '<title>404 Not Found</title>'
-              . '</head><body>'
-              . '<h1>Not Found</h1>'
-              . '<p>The requested URL was not found on this server.</p>'
-              . '</body></html>';
-    die($notfound);
-}
 
 /**
- * if you want to display a custom 404 page instead, replace the above function with
+ * if you want to display a custom 404 page instead, replace the default function with
  * the following :
- * 
+ */
+function ozh_404_if_not_found() {
+    yourls_status_header(404);
+    include_once($_SERVER['DOCUMENT_ROOT'].'/404.php'); // full path to your error document
+    die();
+}
+
+// Display a default 404 not found page
+/**
  * function ozh_404_if_not_found() {
- *     yourls_status_header(404);
- *     include_once('/full/path/to/your/404.html'); // full path to your error document
- *     die();
+ *    yourls_status_header(404);
+ *     $notfound = '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">'
+ *               . '<html><head>'
+ *               . '<title>404 Not Found</title>'
+ *               . '</head><body>'
+ *               . '<h1>Not Found</h1>'
+ *               . '<p>The requested URL was not found on this server.</p>'
+ *               . '</body></html>';
+ *     die($notfound);
  * }
- * 
  */
