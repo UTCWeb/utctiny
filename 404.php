@@ -7,7 +7,7 @@
         <div class="col-12 col-lg-10 col-xl-8 col-xxl-5 mt-5">
             <div class="card border-0 mt-5">
                     <div class="text-center">
-                        <img src="frontend/assets/svg/utc-wordmark-reverse.svg" alt="UTC Logo" width="300px" style="margin-top:-4rem;">
+                        <img src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/frontend/assets/svg/utc-wordmark-reverse.svg" alt="UTC Logo" width="300px" style="margin-top:-4rem;">
                     </div>
                     <div class="card-body px-md-5">
                         <h1>Sorry,</h1>
