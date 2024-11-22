@@ -65,16 +65,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.1",
+            "version": "1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "063d9aa8696582f5a41dffbbaf3c81024f0a604a"
+                "reference": "3b1fc3f0be055baa7c6258b1467849c3e8204eb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/063d9aa8696582f5a41dffbbaf3c81024f0a604a",
-                "reference": "063d9aa8696582f5a41dffbbaf3c81024f0a604a",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/3b1fc3f0be055baa7c6258b1467849c3e8204eb2",
+                "reference": "3b1fc3f0be055baa7c6258b1467849c3e8204eb2",
                 "shasum": ""
             },
             "require": {
@@ -84,8 +84,8 @@
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^8 || ^9",
                 "psr/log": "^1.0 || ^2.0 || ^3.0",
-                "symfony/phpunit-bridge": "^4.2 || ^5",
                 "symfony/process": "^4.0 || ^5.0 || ^6.0 || ^7.0"
             },
             "type": "library",
@@ -121,7 +121,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.1"
+                "source": "https://github.com/composer/ca-bundle/tree/1.5.3"
             },
             "funding": [
                 {
@@ -137,7 +137,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-08T15:28:20+00:00"
+            "time": "2024-11-04T10:15:26+00:00"
         },
         {
             "name": "geoip2/geoip2",
@@ -236,29 +236,27 @@
         },
         {
             "name": "maxmind-db/reader",
-            "version": "v1.11.1",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maxmind/MaxMind-DB-Reader-php.git",
-                "reference": "1e66f73ffcf25e17c7a910a1317e9720a95497c7"
+                "reference": "5b2d7a721dedfaef9dc20822c5fe7d26f9f8eb90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maxmind/MaxMind-DB-Reader-php/zipball/1e66f73ffcf25e17c7a910a1317e9720a95497c7",
-                "reference": "1e66f73ffcf25e17c7a910a1317e9720a95497c7",
+                "url": "https://api.github.com/repos/maxmind/MaxMind-DB-Reader-php/zipball/5b2d7a721dedfaef9dc20822c5fe7d26f9f8eb90",
+                "reference": "5b2d7a721dedfaef9dc20822c5fe7d26f9f8eb90",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2"
             },
             "conflict": {
-                "ext-maxminddb": "<1.11.1,>=2.0.0"
+                "ext-maxminddb": "<1.11.1 || >=2.0.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.*",
-                "php-coveralls/php-coveralls": "^2.1",
                 "phpstan/phpstan": "*",
-                "phpunit/phpcov": ">=6.0.0",
                 "phpunit/phpunit": ">=8.0.0,<10.0.0",
                 "squizlabs/php_codesniffer": "3.*"
             },
@@ -295,29 +293,29 @@
             ],
             "support": {
                 "issues": "https://github.com/maxmind/MaxMind-DB-Reader-php/issues",
-                "source": "https://github.com/maxmind/MaxMind-DB-Reader-php/tree/v1.11.1"
+                "source": "https://github.com/maxmind/MaxMind-DB-Reader-php/tree/v1.12.0"
             },
-            "time": "2023-12-02T00:09:23+00:00"
+            "time": "2024-11-14T22:43:47+00:00"
         },
         {
             "name": "maxmind/web-service-common",
-            "version": "v0.9.0",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maxmind/web-service-common-php.git",
-                "reference": "4dc5a3e8df38aea4ca3b1096cee3a038094e9b53"
+                "reference": "d7c7c42fc31bff26e0ded73a6e187bcfb193f9c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maxmind/web-service-common-php/zipball/4dc5a3e8df38aea4ca3b1096cee3a038094e9b53",
-                "reference": "4dc5a3e8df38aea4ca3b1096cee3a038094e9b53",
+                "url": "https://api.github.com/repos/maxmind/web-service-common-php/zipball/d7c7c42fc31bff26e0ded73a6e187bcfb193f9c4",
+                "reference": "d7c7c42fc31bff26e0ded73a6e187bcfb193f9c4",
                 "shasum": ""
             },
             "require": {
                 "composer/ca-bundle": "^1.0.3",
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": ">=7.2"
+                "php": ">=8.1"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.*",
@@ -346,9 +344,9 @@
             "homepage": "https://github.com/maxmind/web-service-common-php",
             "support": {
                 "issues": "https://github.com/maxmind/web-service-common-php/issues",
-                "source": "https://github.com/maxmind/web-service-common-php/tree/v0.9.0"
+                "source": "https://github.com/maxmind/web-service-common-php/tree/v0.10.0"
             },
-            "time": "2022-03-28T17:43:20+00:00"
+            "time": "2024-11-14T23:14:52+00:00"
         },
         {
             "name": "ozh/bookmarkletgen",
@@ -515,16 +513,16 @@
         },
         {
             "name": "rmccue/requests",
-            "version": "v2.0.12",
+            "version": "v2.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/Requests.git",
-                "reference": "fb67e3d392ff6b89a90e96f19745662f4ecd62b1"
+                "reference": "8bc4aae49f5b2bd0a9f42e920e646ec5b2b0a68a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/Requests/zipball/fb67e3d392ff6b89a90e96f19745662f4ecd62b1",
-                "reference": "fb67e3d392ff6b89a90e96f19745662f4ecd62b1",
+                "url": "https://api.github.com/repos/WordPress/Requests/zipball/8bc4aae49f5b2bd0a9f42e920e646ec5b2b0a68a",
+                "reference": "8bc4aae49f5b2bd0a9f42e920e646ec5b2b0a68a",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +596,7 @@
                 "issues": "https://github.com/WordPress/Requests/issues",
                 "source": "https://github.com/WordPress/Requests"
             },
-            "time": "2024-07-08T08:10:42+00:00"
+            "time": "2024-10-29T10:04:19+00:00"
         },
         {
             "name": "spatie/array-to-xml",
@@ -912,7 +910,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
