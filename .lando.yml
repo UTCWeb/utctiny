@@ -1,7 +1,7 @@
 name: utctiny
 recipe: lamp
 config:
-  php: '8.2'
+  php: '8.3'
   webroot: .
   database: mariadb
   xdebug: false
