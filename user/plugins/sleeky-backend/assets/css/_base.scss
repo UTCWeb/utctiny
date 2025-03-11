@@ -21,7 +21,7 @@
     }
 }
 
-// Use it like this:
+// Use like this:
 // @include for-size(phone-only) {
 //   margin: 30px;
 // }
@@ -89,7 +89,7 @@ input[type="submit"] {
   }
 }
 
-// Need to fix this, because I've had to copy this down lower to make it apply to the add URL button
+// Need to fix this; had to copy this down lower to make it apply to the add URL button
 input.button:hover,
 input.submit:hover,
 input[type="submit"]:hover {
