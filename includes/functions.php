@@ -172,7 +172,7 @@ function yourls_get_stats($filter = 'top', $limit = 10, $start = 0) {
 
 	$return['stats'] = yourls_get_db_stats();
 
-	$return['statusCode'] = 200;
+	$return['statusCode'] = '200';
 
 	return yourls_apply_filter( 'get_stats', $return, $filter, $limit, $start );
 }
@@ -1313,7 +1313,7 @@ function yourls_tell_if_new_version() {
 function yourls_include_file_sandbox($file) {
     try {
         if (is_readable( $file )) {
-            include_once $file;
+            require_once $file;
             yourls_debug_log("loaded $file");
             return true;
         }
