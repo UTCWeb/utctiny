@@ -4,29 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f3489d91c6a9698aac6415b81a2c3f6",
+    "content-hash": "6d1bf2ff65ffa0200867c9cae635848b",
     "packages": [
         {
             "name": "aura/sql",
-            "version": "3.1.0",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auraphp/Aura.Sql.git",
-                "reference": "88d8b8ed1bcfd588a649fdc7e7ac89ec047abbca"
+                "reference": "fd7a6dd1c9d2a1da5754c50f287f8be8a27db0e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.Sql/zipball/88d8b8ed1bcfd588a649fdc7e7ac89ec047abbca",
-                "reference": "88d8b8ed1bcfd588a649fdc7e7ac89ec047abbca",
+                "url": "https://api.github.com/repos/auraphp/Aura.Sql/zipball/fd7a6dd1c9d2a1da5754c50f287f8be8a27db0e7",
+                "reference": "fd7a6dd1c9d2a1da5754c50f287f8be8a27db0e7",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6.0",
-                "psr/log": "^1.0 || ^2.0"
+                "ext-pdo": "*",
+                "php": ">=8.1",
+                "psr/log": "^1.0 || ^2.0 || ^3.0"
             },
             "require-dev": {
                 "pds/skeleton": "~1.0",
-                "yoast/phpunit-polyfills": "~1.0"
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -59,9 +60,9 @@
             ],
             "support": {
                 "issues": "https://github.com/auraphp/Aura.Sql/issues",
-                "source": "https://github.com/auraphp/Aura.Sql/tree/3.1.0"
+                "source": "https://github.com/auraphp/Aura.Sql/tree/5.0.3"
             },
-            "time": "2022-04-28T05:11:23+00:00"
+            "time": "2025-01-22T06:39:17+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -463,16 +464,16 @@
         },
         {
             "name": "psr/log",
-            "version": "2.0.0",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376"
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/ef29f6d262798707a9edd554e2b82517ef3a9376",
-                "reference": "ef29f6d262798707a9edd554e2b82517ef3a9376",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
                 "shasum": ""
             },
             "require": {
@@ -481,7 +482,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "3.x-dev"
                 }
             },
             "autoload": {
@@ -507,9 +508,9 @@
                 "psr-3"
             ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/2.0.0"
+                "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "time": "2021-07-14T16:41:46+00:00"
+            "time": "2024-09-11T13:17:53+00:00"
         },
         {
             "name": "rmccue/requests",
@@ -910,11 +911,11 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1",
+        "php": "^8.1",
         "ext-dom": "*",
         "ext-filter": "*",
         "ext-hash": "*",
@@ -926,7 +927,7 @@
         "ext-ctype": "*"
     },
     "platform-overrides": {
-        "php": "8.1"
+        "php": "8.1.0"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.2.0"
 }
