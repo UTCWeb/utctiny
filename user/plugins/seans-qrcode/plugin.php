@@ -37,8 +37,9 @@ use chillerlan\QRCode\{QRCode, QROptions};
 
 class LogoOptions extends QROptions{
 	// size in QR modules, multiply with QROptions::$scale for pixel size
-	protected int $logoSpaceWidth;
-	protected int $logoSpaceHeight;
+	protected ?int $logoSpaceWidth = null; // or some integer value
+	protected ?int $logoSpaceHeight = null; // Make this nullable to match parent class
+
 }
 
 // Kick in if the loader does not recognize a valid pattern
