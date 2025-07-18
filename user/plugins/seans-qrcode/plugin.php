@@ -156,7 +156,7 @@ function sean_add_qrcode_css_head( $context ) {
 			function sean_add_qr_popup(el) {
 				// need to do 'off' first because adding a URL triggers this twice and we don't want two identical actions added to click
 				el.off('click').on('click', function() {
-					var NWin = window.open($(this).attr('href'), '', 'scrollbars=0,location=0,height=380,width=380');
+					var NWin = window.open($(this).attr('href'), '', 'scrollbars=0,location=0,height=800,width=800');
 					if (window.focus) {
 						NWin.focus();
 					}
@@ -185,7 +185,7 @@ if (SEAN_QR_ADD_TO_SHAREBOX) {
     yourls_add_filter('table_add_row_action_array', 'sean_change_share_action');
 }
 
-/* Add the extra HTML for the QR code to the share boxe */
+/* Add the extra HTML for the QR code to the share box */
 function sean_add_qr_div($args) {
 	$h = "h2";
 	if( defined('YOURLS_INFOS') && YOURLS_INFOS) {
