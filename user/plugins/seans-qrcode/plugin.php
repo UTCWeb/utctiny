@@ -31,7 +31,7 @@ defined('SEAN_QR_MARGIN') or define('SEAN_QR_MARGIN', 4);
 require_once __DIR__.'/vendor/autoload.php';
 
 //include qrcode library
-require_once( dirname(__FILE__).'/QRImageWithLogo.php' );
+require_once( dirname(__FILE__).'/QRSvgWithLogo.php' );
 
 use chillerlan\QRCode\{QRCode, QROptions};
 
@@ -70,21 +70,37 @@ function sean_yourls_qrcode( $request ) {
 
 			$options = new LogoOptions;
 
-			$options->version          = 7;
-			$options->eccLevel         = QRCode::ECC_H;
-			$options->imageBase64      = false;
+            // SVG logo options (see extended class)
+            $options->svgLogo             = __DIR__.'/cc.svg'; // logo from: https://github.com/simple-icons/simple-icons
+            $options->svgLogoScale        = 0.25;
+            $options->svgLogoCssClass     = 'dark';
+// QROptions
+            $options->version             = 5;
+            $options->outputInterface     = QRSvgWithLogo::class;
+            $options->outputBase64        = false;
+            $options->eccLevel            = EccLevel::H; // ECC level H is necessary when using logos
+            $options->addQuietzone        = true;
+            $options->drawLightModules    = true;
+            $options->connectPaths        = true;
+            $options->drawCircularModules = true;
+            $options->circleRadius        = 0.45;
+            $options->keepAsSquare        = [
+                QRMatrix::M_FINDER_DARK,
+                QRMatrix::M_FINDER_DOT,
+                QRMatrix::M_ALIGNMENT_DARK,
+            ];
 			$options->logoSpaceWidth   = SEAN_QR_LOGO_SPACE;
 			$options->logoSpaceHeight  = SEAN_QR_LOGO_SPACE;
 			$options->scale            = SEAN_QR_SCALE;
 			$options->imageTransparent = false;
 			$options->quietzoneSize    = SEAN_QR_MARGIN;
 
-			header('Content-type: image/png');
+			header('Content-type: image/svg+xml');
 
-			$qrOutputInterface = new QRImageWithLogo($options, (new QRCode($options))->getMatrix($url));
+			$qrOutputInterface = new QRSvgWithLogo($options, (new QRCode($options))->getMatrix($url));
 
 			// dump the output, with an additional logo
-			echo $qrOutputInterface->dump(null, __DIR__.'/logo.png');
+			echo $qrOutputInterface->dump(null, __DIR__.'/cc.svg');
 
 			exit;
 		}
