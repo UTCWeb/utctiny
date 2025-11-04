@@ -1,4 +1,7 @@
 {
+    "name": "yourls/yourls-saml",
+    "type": "yourls-plugin",
+    "description": "SAML Authentication for YOURLS",
     "require": {
         "onelogin/php-saml": "^4.0"
     }

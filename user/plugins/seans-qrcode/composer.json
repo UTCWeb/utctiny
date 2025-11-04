@@ -1,4 +1,7 @@
 {
+    "name": "yourls/seans-qrcode",
+    "type": "yourls-plugin",
+    "description": "QR Code plugin for YOURLS",
     "require": {
         "php": "^8.0",
         "chillerlan/php-qrcode": "^4.4.0",

@@ -2,6 +2,7 @@
 .htaccess
 includes/vendor/*
 !includes/vendor/.gitkeep
+# Commit plugin dependencies
 user/plugins/*/vendor/*
 
 # environment-specific config

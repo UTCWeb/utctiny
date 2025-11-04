@@ -60,3 +60,8 @@ source:
         auto-update:
             command: |
                 curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
+
+hooks:
+    build: |
+        composer install --no-dev --optimize-autoloader --no-interaction
+        # The post-install-cmd script will handle plugin dependencies
