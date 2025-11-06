@@ -6,9 +6,6 @@ includes/vendor/*
 # do not commit plugin dependencies
 user/plugins/*/vendor/*
 
-# environment-specific config
-user/config.php
-
 # frontend tooling
 frontend/node_modules
 frontend/package-lock.json
