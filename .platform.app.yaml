@@ -34,26 +34,22 @@ hooks:
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
-# The mounts that will be performed when the package is deployed.
-mounts:
-    # Because this directory is in the webroot, files here will be web-accessible.
-    'web/uploads':
-        source: local
-        source_path: uploads
-    # Files in this directory will not be web-accessible.
-    'private':
-        source: local
-        source_path: private
-
-
 # The configuration of app when it is exposed to the web.
 web:
     locations:
         "/":
-            # The public directory of the app, relative to its root.
-            root: "."
-            # The front-controller script to send non-static requests to.
+            root: ""
+            allow: true
+            scripts: true
+            index:
+                - index.php
             passthru: "/yourls-loader.php"
+        "/admin/auth":
+            root: "user/plugins/yourls-saml/public"
+            allow: true
+            scripts: true
+            index:
+                - index.php
 
 source:
     operations:
