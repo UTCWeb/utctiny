@@ -33,8 +33,8 @@
         "symfony/polyfill-intl-idn": "^1.17",
         "spatie/array-to-xml": "^2.14",
         "platformsh/config-reader": "^3.0",
-        "yourls/seans-qrcode": "*@dev",
-        "yourls/yourls-saml": "*@dev"
+        "yourls/seans-qrcode": "dev-develop as 1.x-dev",
+        "yourls/yourls-saml": "dev-develop as 1.x-dev"
     },
     "repositories": [
         {

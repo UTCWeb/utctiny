@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ded6c9b324cc3341cf50bddba52fe019",
+    "content-hash": "373608bdab1b6b9f2fb7d157f13dc619",
     "packages": [
         {
             "name": "aura/sql",
@@ -209,16 +209,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.8",
+            "version": "1.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "719026bb30813accb68271fee7e39552a58e9f65"
+                "reference": "1905981ee626e6f852448b7aaa978f8666c5bc54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/719026bb30813accb68271fee7e39552a58e9f65",
-                "reference": "719026bb30813accb68271fee7e39552a58e9f65",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/1905981ee626e6f852448b7aaa978f8666c5bc54",
+                "reference": "1905981ee626e6f852448b7aaa978f8666c5bc54",
                 "shasum": ""
             },
             "require": {
@@ -265,7 +265,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.8"
+                "source": "https://github.com/composer/ca-bundle/tree/1.5.9"
             },
             "funding": [
                 {
@@ -277,7 +277,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-20T18:49:47+00:00"
+            "time": "2025-11-06T11:46:17+00:00"
         },
         {
             "name": "geoip2/geoip2",
@@ -1210,7 +1210,7 @@
         },
         {
             "name": "yourls/seans-qrcode",
-            "version": "dev-feature/UTCT-119-Upsun-tooling",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "user/plugins/seans-qrcode",
@@ -1230,7 +1230,7 @@
         },
         {
             "name": "yourls/yourls-saml",
-            "version": "dev-feature/UTCT-119-Upsun-tooling",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "user/plugins/yourls-saml",
@@ -1247,7 +1247,20 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "yourls/seans-qrcode",
+            "version": "dev-develop",
+            "alias": "1.x-dev",
+            "alias_normalized": "1.9999999.9999999.9999999-dev"
+        },
+        {
+            "package": "yourls/yourls-saml",
+            "version": "dev-develop",
+            "alias": "1.x-dev",
+            "alias_normalized": "1.9999999.9999999.9999999-dev"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "yourls/seans-qrcode": 20,
