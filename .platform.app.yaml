@@ -14,7 +14,7 @@ dependencies:
 
 # 'database' is the relationship name, 'mariadb' refers to the service name, 'main' is the default database
 relationships:
-    database: "mariadb:main"
+    database: "database:mysql"
 
 # The hooks that will be performed when the package is deployed.
 hooks:
