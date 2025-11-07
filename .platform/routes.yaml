@@ -6,7 +6,6 @@
 "https://{default}/":
     type: upstream
     upstream: "app:http"
-
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
+    cache:
+        # do not enable http cache for apps that use Cloudflare CDN
+        enabled: false
