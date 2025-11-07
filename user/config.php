@@ -18,13 +18,13 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
         // 'admin' => 'yourls'
     ];
 
-    if (getenv('YOURLS_SITE')) {
+    //if (getenv('YOURLS_SITE')) {
         // Use the environment variable if set
-        define('YOURLS_SITE', getenv('YOURLS_SITE'));
-    } else {
+    //    define('YOURLS_SITE', getenv('YOURLS_SITE'));
+    //} else {
         // Fall back to using the HTTP host
         define('YOURLS_SITE', 'https://' . $_SERVER['HTTP_HOST']);
-    }
+    //}
 } else {
     // Local DDev development
     define( 'YOURLS_SITE', 'https://utctiny.ddev.site' );
