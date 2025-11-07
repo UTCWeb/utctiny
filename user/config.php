@@ -13,18 +13,13 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define( 'YOURLS_DB_NAME', getenv('DB_NAME') );
     define( 'YOURLS_DB_HOST', getenv('DB_HOST') );
     define( 'YOURLS_DB_PREFIX', 'yourls_' );
+    define( 'YOURLS_SITE', 'https://' . $_SERVER['HTTP_HOST'] );
+    //Temporary test admin account
     $yourls_user_passwords = [
         'admin' => 'phpass:!2y!10!Cp1IegnyK3u1G0orJpFKPuFisyoLK.rMq6Ta8UY.rUdr4hindh0iC' /* Password encrypted by YOURLS */ ,
         // 'admin' => 'yourls'
     ];
 
-    //if (getenv('YOURLS_SITE')) {
-        // Use the environment variable if set
-    //    define('YOURLS_SITE', getenv('YOURLS_SITE'));
-    //} else {
-        // Fall back to using the HTTP host
-        define('YOURLS_SITE', 'https://' . $_SERVER['HTTP_HOST']);
-    //}
 } else {
     // Local DDev development
     define( 'YOURLS_SITE', 'https://utctiny.ddev.site' );
