@@ -22,9 +22,6 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
         'utc123' => '$utc123'
         // You can have one or more 'login'=>'password' lines
         // Also: MUST configure user level in Auth Manager Plus section
-//    'jty711' => 'phpass:!2y!10!D9DztiH2pahX2QpyDaiDPuEAhp1vAHZVEMDcShgs1lWedlPpAtcuK',/* Chris Gilligan */
-//    'xjm218' => 'phpass:!2y!10!thTf/S5cO56AeMFb7nT/fOluPWNvgGJnRXKkLlPbm2OxYwabmGCBu',/* Bridget Hornsby */
-//    'xpn146' => 'phpass:!2y!10!5ai1wPgdbOgV5p2qFCNJOu/weDFe3KnBEG3HydGplR7n0tQuKprle',/* Weston Gentry */
     ];
     /*
      ** Auth Manager Plus plugin configuration
