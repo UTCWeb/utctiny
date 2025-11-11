@@ -14,11 +14,44 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define( 'YOURLS_DB_HOST', getenv('DB_HOST') );
     define( 'YOURLS_DB_PREFIX', 'yourls_' );
     define( 'YOURLS_SITE', 'https://' . $_SERVER['HTTP_HOST'] );
-    //Temporary test admin account
+    /** Username(s) UTC123 UPPERCASE allowed to access the Admin and Plugins.
+     ** Passwords in secure plain text for setup, pre-login
+     ** YOURLS will auto encrypt plain text passwords on SAML login
+     ** Read http://yourls.org/userpassword for more information */
     $yourls_user_passwords = [
-        'admin' => 'phpass:!2y!10!Cp1IegnyK3u1G0orJpFKPuFisyoLK.rMq6Ta8UY.rUdr4hindh0iC' /* Password encrypted by YOURLS */ ,
-        // 'admin' => 'yourls'
+        'utc123' => '$utc123'
+        // You can have one or more 'login'=>'password' lines
+        // Also: MUST configure user level in Auth Manager Plus section
+//    'jty711' => 'phpass:!2y!10!D9DztiH2pahX2QpyDaiDPuEAhp1vAHZVEMDcShgs1lWedlPpAtcuK',/* Chris Gilligan */
+//    'xjm218' => 'phpass:!2y!10!thTf/S5cO56AeMFb7nT/fOluPWNvgGJnRXKkLlPbm2OxYwabmGCBu',/* Bridget Hornsby */
+//    'xpn146' => 'phpass:!2y!10!5ai1wPgdbOgV5p2qFCNJOu/weDFe3KnBEG3HydGplR7n0tQuKprle',/* Weston Gentry */
     ];
+    /*
+     ** Auth Manager Plus plugin configuration
+     ** Role Assignments per user
+     */
+    $amp_default_role = "anonymous";
+    $amp_role_assignment = array(
+        'administrator' => array(
+            'utc123',/* UC */
+            'xjm218',/* BH */
+            'jty711',/* CG */
+            'cpg381',/* SC */
+        ),
+        'editor' => array(
+            'ckg289',/* SS */
+            'xpn146',/* WG */
+            'hmb868',/* AC */
+        ),
+        'contributor' => array(
+            'xjg733',/* TC */
+            'pqb796',/* BR */
+            'qtx683',/* NW */
+            'vqw426',/* PN */
+            'vld282',/* CG */
+        ),
+    );
+
 
 } else {
     // Local DDev development
