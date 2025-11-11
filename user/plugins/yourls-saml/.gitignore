@@ -1,2 +1,3 @@
 vendor/
-settings.php
+# commit settings with Upsun env:vars
+# settings.php
