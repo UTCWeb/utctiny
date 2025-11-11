@@ -37,10 +37,10 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
             'xjm218',/* BH */
             'jty711',/* CG */
             'cpg381',/* SC */
+            'xpn146',/* WG */
         ),
         'editor' => array(
             'ckg289',/* SS */
-            'xpn146',/* WG */
             'hmb868',/* AC */
         ),
         'contributor' => array(
@@ -85,7 +85,7 @@ define( 'YOURLS_PRIVATE', true );
 
 /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
  ** Hint: copy from http://yourls.org/cookie */
-define( 'YOURLS_COOKIEKEY', 'Y9Rd_S2B~aLnmsjYA$2Q8dAp@@WK|E_EKHXw0{6N' );
+define( 'YOURLS_COOKIEKEY', '$YOURLS_COOKIEKEY' );
 
 /** URL shortening method: either 36 or 62
  ** 36: generates all lowercase keywords (ie: 13jkm)
@@ -119,4 +119,4 @@ define("SEAN_QR_MARGIN", 2);
 /*
  ** reCAPTCHA V3 Secret Key, moved from frontend/config.php
  */
-define("recaptchaV3SecretKey", '6LdAwAspAAAAAEIj4VafriX1ej1sIuRdqbo2tJNv');
+define("recaptchaV3SecretKey", '$recaptchaV3SecretKey');
