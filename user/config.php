@@ -19,7 +19,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
      ** YOURLS will auto encrypt plain text passwords on SAML login
      ** Read http://yourls.org/userpassword for more information */
     $yourls_user_passwords = [
-        'utc123' => '$UTC123'
+        'utc123' => getenv('UTC123') ?: ''
         // You can have one or more 'login'=>'password' lines
         // Also: MUST configure user level in Auth Manager Plus section
     ];
