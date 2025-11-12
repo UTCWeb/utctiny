@@ -20,7 +20,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
      ** Read http://yourls.org/userpassword for more information */
     $admin_password_from_env = getenv('UTC123') ?: '';
     $yourls_user_passwords = [
-        'utc123' => $admin_password_from_env ? $admin_password_from_env : '',
+        'utc123' => $admin_password_from_env,
         // You can have one or more 'login'=>'password' lines
         // Also: MUST configure user level in Auth Manager Plus section
     ];
@@ -82,7 +82,7 @@ define( 'YOURLS_PRIVATE', true );
 
 /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
  ** Hint: copy from http://yourls.org/cookie */
-define( 'YOURLS_COOKIEKEY', '$YOURLS_COOKIEKEY' );
+define( 'YOURLS_COOKIEKEY', getenv('YOURLS_COOKIEKEY') );
 
 /** URL shortening method: either 36 or 62
  ** 36: generates all lowercase keywords (ie: 13jkm)
@@ -116,4 +116,4 @@ define("SEAN_QR_MARGIN", 2);
 /*
  ** reCAPTCHA V3 Secret Key, moved from frontend/config.php
  */
-define("recaptchaV3SecretKey", '$recaptchaV3SecretKey');
+define("recaptchaV3SecretKey", getenv('recaptchaV3SecretKey') );
