@@ -2,7 +2,7 @@
 /*
  ** Site options
  */
-
+use Platformsh\ConfigReader\Config;
 // In your config.php file
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     // We're on Platform.sh
@@ -48,7 +48,6 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
             'vld282',/* CG */
         ),
     );
-
 
 } else {
     // Local DDev development
