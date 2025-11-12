@@ -62,6 +62,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
         // 'admin' => 'yourls'
     ];
 }
+
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
  ** That translation file (a .mo file) must be installed in the user/language directory.
