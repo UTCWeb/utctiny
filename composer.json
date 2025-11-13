@@ -1,6 +1,6 @@
 {
-    "name": "yourls/yourls",
-    "description": "Your Own URL Shortener",
+    "name": "utcweb/utctiny",
+    "description": "UTC: Your Own URL Shortener",
     "type": "project",
     "keywords": [
         "shortener",
@@ -9,11 +9,11 @@
         "url",
         "bitly"
     ],
-    "homepage": "https://yourls.org",
+    "homepage": "https://go.utc.edu",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/YOURLS/YOURLS/issues",
-        "source": "https://github.com/YOURLS/YOURLS"
+        "issues": "https://github.com/UTCWeb/utctiny/issues",
+        "source": "https://github.com/UTCWeb/utctiny"
     },
     "require": {
         "php": "^8.1",
