@@ -1,6 +1,10 @@
 <?php
+// Upsun env:var gets these
+$idp_entityId = getenv('idp_entityId');
+$idp_singleSignOnService_url = getenv('idp_singleSignOnService_url');
+$idp_x509cert = getenv('idp_x509cert');
 
-$wlabarron_saml_yourls_base_url = "https://go.utc.edu/";
+$wlabarron_saml_yourls_base_url = getenv('APP_URL') ?: '';
 
 $wlabarron_saml_settings = array (
     // If 'strict' is True, then the PHP Toolkit will reject unsigned
@@ -81,13 +85,12 @@ $wlabarron_saml_settings = array (
     // Identity Provider Data that we want connect with our SP
     'idp' => array (
         // Identifier of the IdP entity  (must be a URI)
-        // Upsun env:var
-        'entityId' => '$idp_entityId',
+        'entityId' => $idp_entityId,
         // SSO endpoint info of the IdP. (Authentication Request protocol)
         'singleSignOnService' => array (
             // URL Target of the IdP where the SP will send the Authentication Request Message
             // Upsun env:var
-            'url' => '$idp_singleSignOnService_url',
+            'url' => $idp_singleSignOnService_url,
             // SAML protocol binding to be used when returning the <Response>
             // message.  Onelogin Toolkit supports for this endpoint the
             // HTTP-Redirect binding only
@@ -106,8 +109,7 @@ $wlabarron_saml_settings = array (
             'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
         ),
         // Public x509 certificate of the IdP
-        // Upsun env:var
-        'x509cert' => '$idp_x509cert',
+        'x509cert' => $idp_x509cert,
         /*
          *  Instead of use the whole x509cert you can use a fingerprint in
          *  order to validate the SAMLResponse, but we don't recommend to use
