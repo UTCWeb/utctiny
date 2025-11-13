@@ -66,9 +66,9 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     ];
     /** reCAPTCHA V3 Secret Key, used only for utctiny.ddev.site */
     define("recaptchaV3SecretKey", '6LdAwAspAAAAAEIj4VafriX1ej1sIuRdqbo2tJNv');
-    /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
+    /** A hash used to encrypt cookies. This one is used only local dev
      ** Hint: copy from http://yourls.org/cookie */
-    define( 'YOURLS_COOKIEKEY', 'Kbdy5ud8lzzKSMEcXbPaCORijW3RAO4UXfLMJJ/Te0hTu8mJTKVna' );
+    define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
 
 /** YOURLS language
