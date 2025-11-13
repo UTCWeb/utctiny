@@ -8,7 +8,7 @@
 
 /*
  ** MySQL settings - You can get this info from your web host
- * DDev local environment:
+ *  DDev local environment:
  * 	- Database name: db
  * 	- Database user: db
  * 	- Database password: db
@@ -42,7 +42,7 @@ define( 'YOURLS_DB_PREFIX', 'yourls_' );
  ** All lowercase, no trailing slash at the end.
  ** If you define it to "http://sho.rt", don't use "http://www.sho.rt" in your browser (and vice-versa)
  ** To use an IDN domain (eg http://héhé.com), write its ascii form here (eg http://xn--hh-bjab.com) */
-define( 'YOURLS_SITE', 'http://your-own-domain-here.com' );
+define( 'YOURLS_SITE', 'http://utctiny.ddev.site' );
 
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
@@ -62,13 +62,13 @@ define( 'YOURLS_PRIVATE', true );
 
 /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
  ** Hint: copy from http://yourls.org/cookie */
-define( 'YOURLS_COOKIEKEY', 'modify this text with something random' );
+define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 
 /** Username(s) and password(s) allowed to access the site. Passwords either in plain text or as encrypted hashes
  ** YOURLS will auto encrypt plain text passwords in this file
  ** Read http://yourls.org/userpassword for more information */
 $yourls_user_passwords = [
-	'username' => 'password',
+	'admin' => 'yourls',
 	// 'username2' => 'password2',
 	// You can have one or more 'login'=>'password' lines
 ];

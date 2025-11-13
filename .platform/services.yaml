@@ -1,0 +1,3 @@
+database:
+    type: mariadb:11.8 # Specify MariaDB version
+    disk: 2048 # Allocate disk space
