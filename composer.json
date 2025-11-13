@@ -78,9 +78,6 @@
         "post-install-cmd": [
             "@install-plugin-deps"
         ],
-        "post-update-cmd": [
-            "@install-plugin-deps"
-        ],
         "post-update-cmd": "bash ./includes/vendor/build-script/yourls-build.sh ./includes/vendor"
     }
 }
