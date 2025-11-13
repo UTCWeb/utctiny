@@ -3,10 +3,10 @@
  ** Site options
  */
 use Platformsh\ConfigReader\Config;
-// In your config.php file
+
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     // We're on Platform.sh
-
+    $platformsh = new Config();
     /** MySQL database */
     define( 'YOURLS_DB_USER', getenv('DB_USERNAME') );
     define( 'YOURLS_DB_PASS', getenv('DB_PASSWORD') );
@@ -20,7 +20,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
      ** Read http://yourls.org/userpassword for more information */
     $admin_password_from_env = getenv('UTC123') ?: '';
     $yourls_user_passwords = [
-        'utc123' => $admin_password_from_env ? $admin_password_from_env : '',
+        'utc123' => $admin_password_from_env,
         // You can have one or more 'login'=>'password' lines
         // Also: MUST configure user level in Auth Manager Plus section
     ];
@@ -49,6 +49,8 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
             'vld282',/* CG */
         ),
     );
+    define("recaptchaV3SecretKey", getenv('recaptchaV3SecretKey') );
+    define( 'YOURLS_COOKIEKEY', getenv('YOURLS_COOKIEKEY') );
 
 } else {
     // Local DDev development
@@ -62,12 +64,18 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
         'admin' => 'phpass:!2y!10!Cp1IegnyK3u1G0orJpFKPuFisyoLK.rMq6Ta8UY.rUdr4hindh0iC' /* Password encrypted by YOURLS */ ,
         // 'admin' => 'yourls'
     ];
+    /** reCAPTCHA V3 Secret Key, used only for utctiny.ddev.site */
+    define("recaptchaV3SecretKey", '6LdAwAspAAAAAEIj4VafriX1ej1sIuRdqbo2tJNv');
+    /** A hash used to encrypt cookies. This one is used only local dev
+     ** Hint: copy from http://yourls.org/cookie */
+    define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
 
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
  ** That translation file (a .mo file) must be installed in the user/language directory.
  ** See http://yourls.org/translations for more information */
+
 define( 'YOURLS_LANG', '' );
 
 /** Allow multiple short URLs for a same long URL
@@ -79,10 +87,6 @@ define( 'YOURLS_UNIQUE_URLS', true );
  ** Set to false for public usage (eg on a restricted intranet or for test setups)
  ** Read http://yourls.org/privatepublic for more details if you're unsure */
 define( 'YOURLS_PRIVATE', true );
-
-/** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated
- ** Hint: copy from http://yourls.org/cookie */
-define( 'YOURLS_COOKIEKEY', '$YOURLS_COOKIEKEY' );
 
 /** URL shortening method: either 36 or 62
  ** 36: generates all lowercase keywords (ie: 13jkm)
@@ -104,16 +108,7 @@ $yourls_reserved_URL = [
 
 /**
  * QR Code Settings
- *
  */
 define("SEAN_QR_SCALE", 12);
 define("SEAN_LOGO_SPACE", 9);
 define("SEAN_QR_MARGIN", 2);
-
-/*
- ** Personal settings would go after here.
- */
-/*
- ** reCAPTCHA V3 Secret Key, moved from frontend/config.php
- */
-define("recaptchaV3SecretKey", '$recaptchaV3SecretKey');
