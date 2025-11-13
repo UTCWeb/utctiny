@@ -2,10 +2,10 @@
 /*
  ** Site options
  */
-// In your config.php file
+use Platformsh\ConfigReader\Config;
+
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     // We're on Platform.sh
-    use Platformsh\ConfigReader\Config;
     $platformsh = new Config();
     /** MySQL database */
     define( 'YOURLS_DB_USER', getenv('DB_USERNAME') );

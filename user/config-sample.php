@@ -8,26 +8,21 @@
 
 /*
  ** MySQL settings - You can get this info from your web host
- * DDev local environment:
- * 	- Database name: db
- * 	- Database user: db
- * 	- Database password: db
- * 	- Database host: db
  */
 
 /** MySQL database username */
-define( 'YOURLS_DB_USER', 'db' );
+define( 'YOURLS_DB_USER', 'your db user name' );
 
 /** MySQL database password */
-define( 'YOURLS_DB_PASS', 'db' );
+define( 'YOURLS_DB_PASS', 'your db password' );
 
 /** The name of the database for YOURLS
  ** Use lower case letters [a-z], digits [0-9] and underscores [_] only */
-define( 'YOURLS_DB_NAME', 'db' );
+define( 'YOURLS_DB_NAME', 'yourls' );
 
 /** MySQL hostname.
  ** If using a non standard port, specify it like 'hostname:port', e.g. 'localhost:9999' or '127.0.0.1:666' */
-define( 'YOURLS_DB_HOST', 'db' );
+define( 'YOURLS_DB_HOST', 'localhost' );
 
 /** MySQL tables prefix
  ** YOURLS will create tables using this prefix (eg `yourls_url`, `yourls_options`, ...)
@@ -75,7 +70,7 @@ $yourls_user_passwords = [
 
 /** URL shortening method: either 36 or 62
  ** 36: generates all lowercase keywords (ie: 13jkm)
- ** 62: generates mixed case keywords (ie: 13jKm or 13JKm)
+ ** 62: generates mixed case keywords (ie: 13jKm or 13JKm) 
  ** For more information, see https://yourls.org/urlconvert */
 define( 'YOURLS_URL_CONVERT', 36 );
 
