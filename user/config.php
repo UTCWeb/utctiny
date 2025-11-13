@@ -13,7 +13,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define( 'YOURLS_DB_NAME', getenv('DB_NAME') );
     define( 'YOURLS_DB_HOST', getenv('DB_HOST') );
     define( 'YOURLS_DB_PREFIX', 'yourls_' );
-    define( 'YOURLS_SITE', getenv( 'APP_URL') );
+    define( 'YOURLS_SITE', getenv('APP_URL') );
     /** Username(s) UTC123 UPPERCASE allowed to access the Admin and Plugins.
      ** Passwords in secure plain text for setup, pre-login
      ** YOURLS will auto encrypt plain text passwords on SAML login
