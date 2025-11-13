@@ -23,7 +23,7 @@ define('logo', '/frontend/assets/svg/utc-wordmark-reverse.svg');
 define("enableRecaptcha", true);
 
 // reCAPTCHA V3 Site Key
-define("recaptchaV3SiteKey", '6LdAwAspAAAAAGVqSRmR1ngmCOVUg2v5pLzIFVc_');
+define("recaptchaV3SiteKey", '6LfgoQssAAAAAB_UqQtwNSCcsUab6v-EXAuykF4U');
 
 // reCAPTCHA V3 Secret Key
 //define("recaptchaV3SecretKey", 'moved to app config for secrecy');
