@@ -82,12 +82,13 @@ $wlabarron_saml_settings = array (
     'idp' => array (
         // Identifier of the IdP entity  (must be a URI)
         // Upsun env:var
-        'entityId' => '$idp_entityId',
+        $idp_entityId = getenv('idp_entityId');
+        'entityId' => $idp_entityId,
         // SSO endpoint info of the IdP. (Authentication Request protocol)
         'singleSignOnService' => array (
             // URL Target of the IdP where the SP will send the Authentication Request Message
             // Upsun env:var
-            'url' => '$idp_singleSignOnService_url',
+            'url' => getenv('idp_singleSignOnService_url'),
             // SAML protocol binding to be used when returning the <Response>
             // message.  Onelogin Toolkit supports for this endpoint the
             // HTTP-Redirect binding only
@@ -107,7 +108,8 @@ $wlabarron_saml_settings = array (
         ),
         // Public x509 certificate of the IdP
         // Upsun env:var
-        'x509cert' => '$idp_x509cert',
+        $idp_x509cert = getenv('idp_x509cert');
+        'x509cert' => $idp_x509cert,
         /*
          *  Instead of use the whole x509cert you can use a fingerprint in
          *  order to validate the SAMLResponse, but we don't recommend to use
