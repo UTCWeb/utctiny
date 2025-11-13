@@ -29,10 +29,23 @@
         "geoip2/geoip2" : "^2.10",
         "aura/sql": "^5.0 | ^6.0",
         "jakeasmith/http_build_url": "^1.0",
+        "platformsh/config-reader": "^3.0",
         "symfony/polyfill-mbstring": "^1.15",
         "symfony/polyfill-intl-idn": "^1.17",
-        "spatie/array-to-xml": "^2.14"
+        "spatie/array-to-xml": "^2.14",
+        "yourls/seans-qrcode": "dev-develop as 1.x-dev",
+        "yourls/yourls-saml": "dev-develop as 1.x-dev"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "user/plugins/seans-qrcode"
+        },
+        {
+            "type": "path",
+            "url": "user/plugins/yourls-saml"
+        }
+    ],
     "require-dev": {
         "ext-ctype": "*"
     },
@@ -59,6 +72,15 @@
         "ext-zlib": "For best performance"
     },
     "scripts": {
+        "install-plugin-deps": [
+            "bash -c \"find user/plugins -name \\\"composer.json\\\" -type f -exec dirname {} \\; | xargs -I{} bash -c 'echo \\\"Installing dependencies for {}\\\" && cd {} && composer install && cd - > /dev/null'\""
+        ],
+        "post-install-cmd": [
+            "@install-plugin-deps"
+        ],
+        "post-update-cmd": [
+            "@install-plugin-deps"
+        ],
         "post-update-cmd": "bash ./includes/vendor/build-script/yourls-build.sh ./includes/vendor"
     }
 }
