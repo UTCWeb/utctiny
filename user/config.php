@@ -3,10 +3,10 @@
  ** Site options
  */
 use Platformsh\ConfigReader\Config;
+$platformsh = new Config();
 
 if (getenv('PLATFORM_RELATIONSHIPS')) {
     // We're on Platform.sh
-    $platformsh = new Config();
     /** MySQL database */
     define( 'YOURLS_DB_USER', getenv('DB_USERNAME') );
     define( 'YOURLS_DB_PASS', getenv('DB_PASSWORD') );
