@@ -89,12 +89,12 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
         // Identity Provider Data that we want connect with our SP
         'idp' => array(
             // Identifier of the IdP entity  (must be a URI)
-            'entityId' => $idp_entityId,
+            'entityId' => getenv('idp_entityId') ?: 'https://cas.utc.edu/idp',
             // SSO endpoint info of the IdP. (Authentication Request protocol)
             'singleSignOnService' => array(
                 // URL Target of the IdP where the SP will send the Authentication Request Message
                 // Upsun env:var
-                'url' => $idp_singleSignOnService_url,
+                'url' => getenv('idp_singleSignOnService_url') ?: 'https://cas.utc.edu/cas/idp/profile/SAML2/Redirect/SSO',
                 // SAML protocol binding to be used when returning the <Response>
                 // message.  Onelogin Toolkit supports for this endpoint the
                 // HTTP-Redirect binding only
@@ -113,7 +113,8 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
                 'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             ),
             // Public x509 certificate of the IdP
-            'x509cert' => $idp_x509cert,
+            'x509cert' => getenv('idp_x509cert') ?: ''
+
             /*
              *  Instead of use the whole x509cert you can use a fingerprint in
              *  order to validate the SAMLResponse, but we don't recommend to use
