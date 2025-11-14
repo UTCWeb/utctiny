@@ -113,7 +113,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
                 'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             ),
             // Public x509 certificate of the IdP
-            'x509cert' => getenv('idp_x509cert') ?: ''
+            'x509cert' => getenv('idp_x509cert') ?: '',
 
             /*
              *  Instead of use the whole x509cert you can use a fingerprint in
