@@ -113,7 +113,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
                 'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             ),
             // Public x509 certificate of the IdP
-            'x509cert' => getenv('idp_x509cert') ?: '',
+            'x509cert' => getenv('idp_x509cert') ?: 'MIIDDjCCAfagAwIBAgIVALvFq0A5kzk2+isTYA1uz5mcxMAfMA0GCSqGSIb3DQEB CwUAMBYxFDASBgNVBAMMC2Nhcy51dGMuZWR1MB4XDTIyMDUxMDIwNDYzNVoXDTQy MDUxMDIwNDYzNVowFjEUMBIGA1UEAwwLY2FzLnV0Yy5lZHUwggEiMA0GCSqGSIb3 DQEBAQUAA4IBDwAwggEKAoIBAQCErVOgCwC3qQKRybb3+I1N8kF1NzhjacPjQIjk DoXrmvBn7AX58+xHf0Y1GMkkini9wY2QwILDZsPp7Oni3yh+kTNX+WIsKt+oHoXn c/buq847b1wR8sLHfgv/CfQt66R2HiIGmg+yYa9VLLuwV9KlWPuC5Bgxkgnn+0Wd tK+vPdICBU0EeoTP0KaS/gmzmkJe4mRij6jZZCgyBAaFiFS8go4g7RMkRB7DuQsq +X1oijmk14S7DCxuDYhfu/VrS1XlFTSdIp69PoWeLYR4vc+R0RjnGFUWhie9CHlz tb2ka6JalEdWBnUsJx3zBvHH8Ld3nllLkOwZCvKM4/sfnDDRAgMBAAGjUzBRMB0G A1UdDgQWBBRsg1riGfnVkeiIf7CdcKJdNRD9vzAwBgNVHREEKTAnggtjYXMudXRj LmVkdYYYY2FzLnV0Yy5lZHUvaWRwL21ldGFkYXRhMA0GCSqGSIb3DQEBCwUAA4IB AQAwLKe/gDWwHaPpSLaQZwnNGfpMCyC8bcD60hkhxGb7RsejpGUWcLeTluOpi0r4 Cz18z2RTI1CikwG1H1GGxy6+OqKBU8MXSJr8wNyC5Bsrf9SJ6qYfFsSRgeV+Dgj2 9BlYRm6DcrDsjjPamaJemQqUMAy2ggxoTiUfVFeoWllC3QANsjZ8lKUTgUZS0g5a LiAWcXBW/Yu77c/Y3//l+O4sTBmaKphA+x0UEkyHFLglJO8DHDNqVHur+LoaKGs9 AxkTPHqmbyrdq8TMDgWd+s5vYynLJI5pB1+ksRFEG8xVnbCDHx8b9OIUNXD8x3w6 feD2xxdSAN++tGoYvZxmyRO3',
 
             /*
              *  Instead of use the whole x509cert you can use a fingerprint in
