@@ -9,7 +9,8 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     $idp_x509cert = getenv('idp_x509cert');
 
     $wlabarron_saml_yourls_base_url = getenv('APP_URL') ?: '';
-
+    // Add a slash to base URL
+    $wlabarron_saml_yourls_base_url = rtrim($wlabarron_saml_yourls_base_url, '/') . '/';
     $wlabarron_saml_settings = array(
         // If 'strict' is True, then the PHP Toolkit will reject unsigned
         // or unencrypted messages if it expects them signed or encrypted
