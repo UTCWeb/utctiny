@@ -53,15 +53,6 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define("recaptchaV3SecretKey", getenv('recaptchaV3SecretKey') );
     define( 'YOURLS_COOKIEKEY', getenv('YOURLS_COOKIEKEY') );
 
-    if getenv('PLATFORM_BRANCH') !== 'main') {
-        /**
-         * Debug
-         */
-        define( 'YOURLS_DEBUG', true );
-        ini_set('display_errors', 1);
-        error_reporting(E_ALL);
-    }
-
 } else {
     // Local DDev development
     define( 'YOURLS_SITE', 'https://utctiny.ddev.site' );
@@ -80,6 +71,12 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
      ** Hint: copy from http://yourls.org/cookie */
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
+/**
+ * Debug
+ */
+define( 'YOURLS_DEBUG', true );
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
