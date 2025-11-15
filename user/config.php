@@ -71,6 +71,12 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
      ** Hint: copy from http://yourls.org/cookie */
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
+/**
+ * Debug
+ */
+define( 'YOURLS_DEBUG', true );
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
