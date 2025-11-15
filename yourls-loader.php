@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // Handle inexistent root favicon requests and exit
 if ( '/favicon.ico' == $_SERVER['REQUEST_URI'] ) {
 	header( 'Content-Type: image/gif' );
