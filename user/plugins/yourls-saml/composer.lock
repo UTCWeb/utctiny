@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4bdbf7b00d29bc1f0029e8260b91072",
+    "content-hash": "267c65cadf34dd4f25b2e0e46a2dcfa1",
     "packages": [
         {
             "name": "onelogin/php-saml",
@@ -69,6 +69,49 @@
                 }
             ],
             "time": "2024-05-30T15:10:40+00:00"
+        },
+        {
+            "name": "platformsh/config-reader",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/platformsh/config-reader-php.git",
+                "reference": "cab2b6c0cdfc318df09a64136957dc1fc308f418"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/platformsh/config-reader-php/zipball/cab2b6c0cdfc318df09a64136957dc1fc308f418",
+                "reference": "cab2b6c0cdfc318df09a64136957dc1fc308f418",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Platformsh\\ConfigReader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Larry Garfield",
+                    "email": "larry@platform.sh"
+                }
+            ],
+            "description": "Small helper to access Platform.sh environment variables",
+            "support": {
+                "issues": "https://github.com/platformsh/config-reader-php/issues",
+                "source": "https://github.com/platformsh/config-reader-php/tree/3.0.1"
+            },
+            "time": "2025-02-25T17:22:15+00:00"
         },
         {
             "name": "robrichards/xmlseclibs",
