@@ -71,12 +71,21 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
      ** Hint: copy from http://yourls.org/cookie */
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
-/**
- * Debug
- */
-define( 'YOURLS_DEBUG', true );
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+
+if (getenv('PLATFORM_ENVIRONMENT') !== 'main') {
+    // This code will only run in non-production environments
+    /** Debug mode to output some internal information
+     ** Default is false for live site. Enable when coding or before submitting a new issue */
+    define( 'YOURLS_DEBUG', true );
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+} else {
+    // This code will only run in the production environment
+    define( 'YOURLS_DEBUG', false );
+    error_reporting(0);
+    ini_set('display_errors', 0);
+    // ... other production-specific settings
+}
 
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
@@ -100,10 +109,6 @@ define( 'YOURLS_PRIVATE', true );
  ** 62: generates mixed case keywords (ie: 13jKm or 13JKm)
  ** For more information, see https://yourls.org/urlconvert */
 define( 'YOURLS_URL_CONVERT', 36 );
-
-/** Debug mode to output some internal information
- ** Default is false for live site. Enable when coding or before submitting a new issue */
-define( 'YOURLS_DEBUG', false );
 
 /**
 * Reserved keywords (so that generated URLs won't match them)
