@@ -53,6 +53,15 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define("recaptchaV3SecretKey", getenv('recaptchaV3SecretKey') );
     define( 'YOURLS_COOKIEKEY', getenv('YOURLS_COOKIEKEY') );
 
+    if getenv('PLATFORM_BRANCH') !== 'main') {
+        /**
+         * Debug
+         */
+        define( 'YOURLS_DEBUG', true );
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);
+    }
+
 } else {
     // Local DDev development
     define( 'YOURLS_SITE', 'https://utctiny.ddev.site' );
@@ -70,15 +79,6 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     /** A hash used to encrypt cookies. This one is used only local dev
      ** Hint: copy from http://yourls.org/cookie */
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
-}
-
-if getenv('PLATFORM_BRANCH') !== 'main') {
-    /**
-     * Debug
-     */
-    define( 'YOURLS_DEBUG', true );
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
 }
 
 /** YOURLS language
