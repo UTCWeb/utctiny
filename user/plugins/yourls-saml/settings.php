@@ -1,8 +1,8 @@
 <?php
 use Platformsh\ConfigReader\Config;
+$platformsh = new Config();
 
 if (getenv('PLATFORM_RELATIONSHIPS')) {
-    $platformsh = new Config();
     // Upsun env:var gets these
     $idp_entityId = getenv('idp_entityId');
     $idp_singleSignOnService_url = getenv('idp_singleSignOnService_url');
