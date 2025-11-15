@@ -3,13 +3,9 @@ use Platformsh\ConfigReader\Config;
 $platformsh = new Config();
 
 if (getenv('PLATFORM_RELATIONSHIPS')) {
-    // Upsun env:var gets these
-    $idp_entityId = getenv('idp_entityId');
-    $idp_singleSignOnService_url = getenv('idp_singleSignOnService_url');
-    $idp_x509cert = getenv('idp_x509cert');
-
+    // set base URL
     $wlabarron_saml_yourls_base_url = getenv('APP_URL') ?: '';
-    // Add a slash to base URL
+    // Add a slash at end of base URL
     $wlabarron_saml_yourls_base_url = rtrim($wlabarron_saml_yourls_base_url, '/') . '/';
     $wlabarron_saml_settings = array(
         // If 'strict' is True, then the PHP Toolkit will reject unsigned
