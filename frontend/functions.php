@@ -1,4 +1,4 @@
-<?php 
+<?php
   // Darken or lighten a hex code
   // Full credit goes to: https://stackoverflow.com/a/11951022
   function adjustBrightness($hex, $steps) {
@@ -23,4 +23,3 @@
 
     return $return;
   }
-?>
