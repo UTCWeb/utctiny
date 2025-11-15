@@ -72,6 +72,15 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
 
+if getenv('PLATFORM_BRANCH') !== 'main') {
+    /**
+     * Debug
+     */
+    define( 'YOURLS_DEBUG', true );
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+}
+
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
  ** That translation file (a .mo file) must be installed in the user/language directory.
