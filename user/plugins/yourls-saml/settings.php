@@ -15,7 +15,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
         'strict' => true,
 
         // Enable debug mode (to print errors)
-        'debug' => false,
+        'debug' => true,
 
         // Set a BaseURL to be used instead of try to guess
         // the BaseURL of the view that process the SAML Message.
