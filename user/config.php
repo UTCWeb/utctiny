@@ -14,9 +14,8 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define( 'YOURLS_DB_HOST', getenv('DB_HOST') );
     define( 'YOURLS_DB_PREFIX', 'yourls_' );
     define( 'YOURLS_SITE', getenv('APP_URL') );
-    /** Username(s) UTC123 UPPERCASE allowed to access the Admin and Plugins.
-     ** Passwords in secure plain text for setup, pre-login
-     ** YOURLS will auto encrypt plain text passwords on SAML login
+    /** Username(s) utc123 allowed to access the Admin and Plugins.
+     ** This ONLY applies if SAML plugin is disabled.
      ** Read http://yourls.org/userpassword for more information */
     $admin_password_from_env = getenv('UTC123') ?: '';
     $yourls_user_passwords = [
@@ -45,8 +44,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
             'xjg733',/* TC */
             'pqb796',/* BR */
             'qtx683',/* NW */
-            'vqw426',/* PN */
-            'vld282',/* CG */
+            'vld282',/* CC */
         ),
     );
 
