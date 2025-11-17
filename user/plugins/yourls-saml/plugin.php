@@ -45,32 +45,43 @@ function wlabarron_saml_authenticate() {
         return false;
     }
 
-    // Special handling for SAML endpoints
-    if (isset($_GET['saml_sso']) || isset($_GET['saml_logout'])) {
-        // Handle SAML operations directly without redirection
-        $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
-        if (isset($_GET['saml_sso'])) {
+// If not authenticated and not at an endpoint, redirect to SSO
+// Use a special URL parameter to prevent endless loop
+if (!isset($_GET['saml_sso'])) {
+    // Store the original URL in the session
+    $_SESSION['saml_original_url'] = yourls_get_current_url();
+
+    // Redirect to SAML auth with the parameter
+    yourls_redirect(yourls_admin_url('?saml_sso=1'), 302);
+    exit;
+}
+
+// Special handling for SAML endpoints
+if (isset($_GET['saml_sso']) || isset($_GET['saml_logout'])) {
+    // Handle SAML operations directly without redirection
+    $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
+    if (isset($_GET['saml_sso'])) {
+        // Use the original URL stored in the session as the RelayState if available
+        if (isset($_SESSION['saml_original_url'])) {
+            $auth->login($_SESSION['saml_original_url']);
+            // Clear the session variable after using it
+            unset($_SESSION['saml_original_url']);
+        } else {
             $auth->login();
+        }
+        exit; // Stop execution after redirect
+    } elseif (isset($_GET['saml_logout'])) {
+        if (isset($_SESSION['samlNameId'])) {
+            $auth->logout();
             exit; // Stop execution after redirect
-        } elseif (isset($_GET['saml_logout'])) {
-            if (isset($_SESSION['samlNameId'])) {
-                $auth->logout();
-                exit; // Stop execution after redirect
-            }
         }
     }
+}
 
     // If user is already authenticated with SAML, set the YOURLS user
     if (isset($_SESSION['samlNameId'])) {
         yourls_set_user($_SESSION['samlNameId']);
         return true;
-    }
-
-    // If not authenticated and not at an endpoint, redirect to SSO
-    // Use a special URL parameter to prevent endless loop
-    if (!isset($_GET['saml_sso'])) {
-        yourls_redirect(yourls_admin_url('?saml_sso=1'), 302);
-        exit;
     }
 
     return false;
@@ -118,4 +129,19 @@ function wlabarron_saml_is_user_in_config() {
     $users = array_keys($yourls_user_passwords);
 
     return in_array(YOURLS_USER, $users);
+}
+// Helper function to get the current full URL
+function yourls_get_current_url() {
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = $_SERVER['REQUEST_URI'];
+
+    // Remove saml_sso parameter if present to avoid redirect loops
+    if (strpos($uri, 'saml_sso=1') !== false) {
+        $uri = preg_replace('/([?&])saml_sso=1(&|$)/', '$1', $uri);
+        // Clean up any trailing & or ?
+        $uri = rtrim($uri, '?&');
+    }
+
+    return $protocol . $host . $uri;
 }
