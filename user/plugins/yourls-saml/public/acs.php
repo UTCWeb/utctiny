@@ -2,7 +2,13 @@
 /**
  * ACS endpoint (where SAML sends the response)
  */
-require(dirname(dirname(__DIR__, 2)).'/includes/load-yourls.php');
+
+// Define the correct path to YOURLS
+define('YOURLS_ABSPATH', dirname(dirname(dirname(__DIR__))));
+
+// Include YOURLS loader
+require_once(YOURLS_ABSPATH . '/includes/load-yourls.php');
+
 require(dirname(__DIR__).'/vendor/autoload.php');
 require_once(dirname(__DIR__).'/settings.php');
 
