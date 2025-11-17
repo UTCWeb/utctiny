@@ -61,14 +61,27 @@ if (isset($_GET['saml_sso']) || isset($_GET['saml_logout'])) {
     // Handle SAML operations directly without redirection
     $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
     if (isset($_GET['saml_sso'])) {
-        // Use the original URL stored in the session as the RelayState if available
-        if (isset($_SESSION['saml_original_url'])) {
-            $auth->login($_SESSION['saml_original_url']);
-            // Clear the session variable after using it
-            unset($_SESSION['saml_original_url']);
-        } else {
-            $auth->login();
+        // Check for existing authentication or loop prevention
+        if (isset($_SESSION['saml_auth_in_progress'])) {
+            // Authentication already in progress - clear flag and continue with YOURLS
+            unset($_SESSION['saml_auth_in_progress']);
+            return false;
         }
+
+        // Set flag to prevent loops
+        $_SESSION['saml_auth_in_progress'] = true;
+
+        // Store the intended destination - use home page if accessing admin
+        $current_url = yourls_get_protocol() . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        if (strpos($current_url, '/admin/') !== false) {
+            $relay_state = str_replace('/admin/', '/', $current_url);
+            $relay_state = preg_replace('/[?&]saml_sso=1(&|$)/', '', $relay_state);
+        } else {
+            $relay_state = $current_url;
+        }
+
+        // Initiate login with explicit RelayState
+        $auth->login($relay_state);
         exit; // Stop execution after redirect
     } elseif (isset($_GET['saml_logout'])) {
         if (isset($_SESSION['samlNameId'])) {
