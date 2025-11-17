@@ -52,6 +52,14 @@ function wlabarron_saml_authenticate() {
         return true;
     }
 
+    // Check if we're in the admin area or the front-end
+    $is_admin = (strpos($request_uri, '/admin/') === 0 || $request_uri === '/admin');
+
+    // Only require authentication for admin area
+    if (!$is_admin) {
+        return false; // Let the front-end be accessible without auth
+    }
+
     // Special handling for SAML endpoints
     if (isset($_GET['saml_sso']) || isset($_GET['saml_logout'])) {
         // Handle SAML operations directly without redirection
@@ -67,8 +75,10 @@ function wlabarron_saml_authenticate() {
             // Set flag to prevent loops
             $_SESSION['saml_auth_in_progress'] = true;
 
-            // Use the home URL as RelayState
-            $auth->login(getenv('APP_URL') ?: 'https://gotest.utc.edu/');
+            // Set the RelayState based on where the user was trying to access
+            $relay_state = isset($_SESSION['saml_original_url']) ? $_SESSION['saml_original_url'] : yourls_admin_url();
+
+            $auth->login($relay_state);
             exit; // Stop execution after redirect
         } elseif (isset($_GET['saml_logout'])) {
             if (isset($_SESSION['samlNameId'])) {
@@ -78,7 +88,12 @@ function wlabarron_saml_authenticate() {
         }
     }
 
-    // If not authenticated and not at an endpoint, redirect to SSO
+    // Store the current URL for after authentication
+    $_SESSION['saml_original_url'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://') .
+                                      $_SERVER['HTTP_HOST'] .
+                                      $_SERVER['REQUEST_URI'];
+
+    // If not authenticated and in admin area, redirect to SSO
     // Use a special URL parameter to prevent endless loop
     if (!isset($_GET['saml_sso'])) {
         yourls_redirect(yourls_admin_url('?saml_sso=1'), 302);
