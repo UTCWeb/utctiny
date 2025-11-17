@@ -42,59 +42,47 @@ function wlabarron_saml_authenticate() {
     $request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     if (preg_match('|/admin/auth/acs\.php$|', $request_uri)) {
         // Let the ACS endpoint handle this - don't redirect
+        require_once(__DIR__ . '/public/acs.php');
         return false;
     }
-
-// If not authenticated and not at an endpoint, redirect to SSO
-// Use a special URL parameter to prevent endless loop
-if (!isset($_GET['saml_sso'])) {
-    // Store the original URL in the session
-    $_SESSION['saml_original_url'] = yourls_get_current_url();
-
-    // Redirect to SAML auth with the parameter
-    yourls_redirect(yourls_admin_url('?saml_sso=1'), 302);
-    exit;
-}
-
-// Special handling for SAML endpoints
-if (isset($_GET['saml_sso']) || isset($_GET['saml_logout'])) {
-    // Handle SAML operations directly without redirection
-    $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
-    if (isset($_GET['saml_sso'])) {
-        // Check for existing authentication or loop prevention
-        if (isset($_SESSION['saml_auth_in_progress'])) {
-            // Authentication already in progress - clear flag and continue with YOURLS
-            unset($_SESSION['saml_auth_in_progress']);
-            return false;
-        }
-
-        // Set flag to prevent loops
-        $_SESSION['saml_auth_in_progress'] = true;
-
-        // Store the intended destination - use home page if accessing admin
-        $current_url = yourls_get_protocol() . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        if (strpos($current_url, '/admin/') !== false) {
-            $relay_state = str_replace('/admin/', '/', $current_url);
-            $relay_state = preg_replace('/[?&]saml_sso=1(&|$)/', '', $relay_state);
-        } else {
-            $relay_state = $current_url;
-        }
-
-        // Initiate login with explicit RelayState
-        $auth->login($relay_state);
-        exit; // Stop execution after redirect
-    } elseif (isset($_GET['saml_logout'])) {
-        if (isset($_SESSION['samlNameId'])) {
-            $auth->logout();
-            exit; // Stop execution after redirect
-        }
-    }
-}
 
     // If user is already authenticated with SAML, set the YOURLS user
     if (isset($_SESSION['samlNameId'])) {
         yourls_set_user($_SESSION['samlNameId']);
         return true;
+    }
+
+    // Special handling for SAML endpoints
+    if (isset($_GET['saml_sso']) || isset($_GET['saml_logout'])) {
+        // Handle SAML operations directly without redirection
+        $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
+        if (isset($_GET['saml_sso'])) {
+            // Check for existing authentication or loop prevention
+            if (isset($_SESSION['saml_auth_in_progress'])) {
+                // Authentication already in progress - clear flag and continue with YOURLS
+                unset($_SESSION['saml_auth_in_progress']);
+                return false;
+            }
+
+            // Set flag to prevent loops
+            $_SESSION['saml_auth_in_progress'] = true;
+
+            // Use the home URL as RelayState
+            $auth->login(getenv('APP_URL') ?: 'https://gotest.utc.edu/');
+            exit; // Stop execution after redirect
+        } elseif (isset($_GET['saml_logout'])) {
+            if (isset($_SESSION['samlNameId'])) {
+                $auth->logout();
+                exit; // Stop execution after redirect
+            }
+        }
+    }
+
+    // If not authenticated and not at an endpoint, redirect to SSO
+    // Use a special URL parameter to prevent endless loop
+    if (!isset($_GET['saml_sso'])) {
+        yourls_redirect(yourls_admin_url('?saml_sso=1'), 302);
+        exit;
     }
 
     return false;
@@ -142,19 +130,4 @@ function wlabarron_saml_is_user_in_config() {
     $users = array_keys($yourls_user_passwords);
 
     return in_array(YOURLS_USER, $users);
-}
-// Helper function to get the current full URL
-function yourls_get_current_url() {
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-    $host = $_SERVER['HTTP_HOST'];
-    $uri = $_SERVER['REQUEST_URI'];
-
-    // Remove saml_sso parameter if present to avoid redirect loops
-    if (strpos($uri, 'saml_sso=1') !== false) {
-        $uri = preg_replace('/([?&])saml_sso=1(&|$)/', '$1', $uri);
-        // Clean up any trailing & or ?
-        $uri = rtrim($uri, '?&');
-    }
-
-    return $protocol . $host . $uri;
 }
