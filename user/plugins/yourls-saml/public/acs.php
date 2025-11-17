@@ -2,8 +2,9 @@
 /**
  * ACS endpoint (where SAML sends the response)
  */
+require(dirname(dirname(__DIR__, 2)).'/includes/load-yourls.php');
 require(dirname(__DIR__).'/vendor/autoload.php');
-require(dirname(__DIR__).'/settings.php');
+require_once(dirname(__DIR__).'/settings.php');
 
 // Start the session if it's not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -45,21 +46,32 @@ try {
     $_SESSION['samlNameIdFormat'] = $auth->getNameIdFormat();
     $_SESSION['samlSessionIndex'] = $auth->getSessionIndex();
 
-    // Handle the RelayState - determine where to redirect
-    $redirect_url = '/';
+    // Set the user in YOURLS
+    yourls_set_user($_SESSION['samlNameId']);
 
-    if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
-        // Use the RelayState provided by SAML if available
+    // Determine where to redirect
+    $redirect_url = yourls_site_url(); // Default to home page
+
+    // Check if there's a RelayState from the SAML response
+    if (!empty($_POST['RelayState'])) {
         $redirect_url = $_POST['RelayState'];
-    } else if (isset($_SESSION['saml_original_url'])) {
-        // Use the stored original URL if available
+    }
+    // Fall back to the stored original URL
+    else if (isset($_SESSION['saml_original_url'])) {
         $redirect_url = $_SESSION['saml_original_url'];
-        unset($_SESSION['saml_original_url']);
+        unset($_SESSION['saml_original_url']); // Clean up
+    }
+
+    // Remove any saml_sso parameter to avoid redirect loops
+    if (strpos($redirect_url, 'saml_sso=1') !== false) {
+        $redirect_url = preg_replace('/([?&])saml_sso=1(&|$)/', '$1', $redirect_url);
+        $redirect_url = rtrim($redirect_url, '?&');
     }
 
     // Redirect the user
     header('Location: ' . $redirect_url);
     exit();
+
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
