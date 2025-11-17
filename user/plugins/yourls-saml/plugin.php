@@ -46,18 +46,10 @@ function wlabarron_saml_authenticate() {
         return false;
     }
 
-    // If user is already authenticated with SAML, set the YOURLS user
+    // If user is already authenticated with SAML, set the YOURLS user and allow access
     if (isset($_SESSION['samlNameId'])) {
         yourls_set_user($_SESSION['samlNameId']);
         return true;
-    }
-
-    // Check if we're in the admin area or the front-end
-    $is_admin = (strpos($request_uri, '/admin/') === 0 || $request_uri === '/admin');
-
-    // Only require authentication for admin area
-    if (!$is_admin) {
-        return false; // Let the front-end be accessible without auth
     }
 
     // Special handling for SAML endpoints
@@ -75,9 +67,38 @@ function wlabarron_saml_authenticate() {
             // Set flag to prevent loops
             $_SESSION['saml_auth_in_progress'] = true;
 
-            // Set the RelayState based on where the user was trying to access
-            $relay_state = isset($_SESSION['saml_original_url']) ? $_SESSION['saml_original_url'] : yourls_admin_url();
+            // Store the current URL before authentication
+            $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = $_SERVER['REQUEST_URI'];
 
+            // Remove saml_sso parameter if present to avoid redirect loops
+            if (strpos($uri, 'saml_sso=1') !== false) {
+                $uri = preg_replace('/([?&])saml_sso=1(&|$)/', '$1', $uri);
+                // Clean up any trailing & or ?
+                $uri = rtrim($uri, '?&');
+            }
+
+            $current_url = $protocol . $host . $uri;
+            $_SESSION['saml_original_url'] = $current_url;
+
+            // Determine where to redirect after authentication
+            $relay_state = '';
+
+            // If accessing the home page, keep it as the relay state
+            if ($request_uri === '/' || $request_uri === '') {
+                $relay_state = $protocol . $host . '/';
+            }
+            // If accessing the admin area, keep it as the relay state
+            else if (strpos($request_uri, '/admin/') === 0) {
+                $relay_state = $protocol . $host . $request_uri;
+            }
+            // Default to the stored URL
+            else {
+                $relay_state = $current_url;
+            }
+
+            // Initiate SAML login
             $auth->login($relay_state);
             exit; // Stop execution after redirect
         } elseif (isset($_GET['saml_logout'])) {
@@ -88,18 +109,20 @@ function wlabarron_saml_authenticate() {
         }
     }
 
-    // Store the current URL for after authentication
-    $_SESSION['saml_original_url'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://') .
-                                      $_SERVER['HTTP_HOST'] .
-                                      $_SERVER['REQUEST_URI'];
-
-    // If not authenticated and in admin area, redirect to SSO
+    // If not authenticated, redirect to SAML SSO
     // Use a special URL parameter to prevent endless loop
     if (!isset($_GET['saml_sso'])) {
-        yourls_redirect(yourls_admin_url('?saml_sso=1'), 302);
+        // Store the current URL for after authentication
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+        $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $_SESSION['saml_original_url'] = $current_url;
+
+        // Redirect to login
+        yourls_redirect(yourls_site_url() . '/admin/?saml_sso=1', 302);
         exit;
     }
 
+    // If we get here, something went wrong with authentication
     return false;
 }
 
