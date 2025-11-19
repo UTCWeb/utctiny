@@ -1,27 +1,48 @@
 <?php
 /*
 Plugin Name: SAML
-Plugin URI: https://github.com/wlabarron/yourls-saml
+Plugin URI: https://github.com/UTCWeb/utctiny
 Description: Log in to YOURLS using SAML.
-Version: 1.2.2
-Author: Andrew Barron
-Author URI: https://awmb.uk
+Version: 1.2.3
+Author: Andrew Barron, Chris Gilligan
+Author URI: https://go.utc.edu
 */
+
+// Start session as early as possible, before any possible output
+if (!yourls_is_API() && !isset($_SESSION) && php_sapi_name() !== 'cli') {
+    // Check if headers were already sent
+    if (!headers_sent()) {
+        session_start();
+    }
+}
 
 yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
 function wlabarron_saml_authenticate() {
     if (!yourls_is_API()) { // Don't use SAML for API requests
-        session_start();
+        // Start session only if it hasn't been started yet and headers haven't been sent
+        if (!isset($_SESSION) && !headers_sent()) {
+            session_start();
+        }
+
         require(__DIR__ . '/vendor/autoload.php');
         require(__DIR__ . '/settings.php');
-        $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
 
-        // If not signed in, sign in
-        if (!isset($_SESSION['samlNameId'])) $auth->login();
+        // Only attempt SAML authentication if we can modify headers
+        if (!headers_sent()) {
+            $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
 
-        yourls_set_user($_SESSION['samlNameId']);
-        return isset($_SESSION['samlNameId']);
+            // If not signed in, sign in
+            if (!isset($_SESSION['samlNameId'])) {
+                $auth->login();
+            }
+        }
+
+        if (isset($_SESSION['samlNameId'])) {
+            yourls_set_user($_SESSION['samlNameId']);
+            return true;
+        }
     }
+    return false;
 }
 
 // Remove log out link from "hello" message
