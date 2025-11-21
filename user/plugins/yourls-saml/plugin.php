@@ -8,76 +8,51 @@ Author: Andrew Barron, Chris Gilligan
 Author URI: https://go.utc.edu
 */
 
-
-// Start session as early as possible, before any possible output
-if (!yourls_is_API() && !isset($_SESSION) && php_sapi_name() !== 'cli') {
-    // Check if headers were already sent
-    if (!headers_sent()) {
+// Initialize session early but safely
+function wlabarron_saml_init_session() {
+    if (!yourls_is_API() && !isset($_SESSION) && php_sapi_name() !== 'cli' && !headers_sent()) {
         session_start();
     }
 }
+// Add this as an early filter to start session before any output
+yourls_add_action('load_template_login', 'wlabarron_saml_init_session', 5);
+yourls_add_action('admin_init', 'wlabarron_saml_init_session', 5);
 
-// Handle both frontend and admin login
-yourls_add_action('pre_login_form', 'wlabarron_saml_intercept_frontend_login');
-function wlabarron_saml_intercept_frontend_login() {
-    if (!yourls_is_API() && !headers_sent()) {
-        // Start session if it hasn't been started yet
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+// Main authentication function
+yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
+function wlabarron_saml_authenticate() {
+    if (yourls_is_API()) {
+        return false; // Don't use SAML for API requests
+    }
 
+    // Initialize session if not already started
+    if (!isset($_SESSION) && !headers_sent()) {
+        session_start();
+    }
+
+    // If we have a valid SAML session, use it
+    if (isset($_SESSION['samlNameId'])) {
+        yourls_set_user($_SESSION['samlNameId']);
+        return true;
+    }
+
+    // Only attempt SAML auth if we can modify headers
+    if (!headers_sent()) {
         require_once(__DIR__ . '/vendor/autoload.php');
         require_once(__DIR__ . '/settings.php');
 
-        // If settings are available and we can modify headers
         if (isset($wlabarron_saml_settings)) {
             $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
 
-            // If not signed in, redirect to SAML login
-            if (!isset($_SESSION['samlNameId'])) {
-                $auth->login();
-                exit; // Stop execution after redirect
-            } else {
-                // User is already authenticated via SAML
-                yourls_set_user($_SESSION['samlNameId']);
-                // Skip the login form and redirect to admin
-                yourls_redirect(yourls_admin_url(), 302);
-                exit;
-            }
+            // Store the current URL for returning after auth
+            $_SESSION['saml_return_to'] = wlabarron_saml_get_current_url();
+
+            // Redirect to SAML login
+            $auth->login();
+            exit; // Stop execution after SAML redirect
         }
     }
-    // If headers were already sent or settings not available, continue with regular login form
-}
 
-// Handle admin area authentication
-yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
-function wlabarron_saml_authenticate() {
-    if (!yourls_is_API()) { // Don't use SAML for API requests
-        // Start session only if it hasn't been started yet and headers haven't been sent
-        if (!isset($_SESSION) && !headers_sent()) {
-            session_start();
-        }
-
-        require_once(__DIR__ . '/vendor/autoload.php');
-        require_once(__DIR__ . '/settings.php');
-
-        // Check if we have SAML session
-        if (isset($_SESSION['samlNameId'])) {
-            yourls_set_user($_SESSION['samlNameId']);
-            return true;
-        }
-
-        // Only attempt SAML authentication if we can modify headers and settings are available
-        if (!headers_sent() && isset($wlabarron_saml_settings)) {
-            $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
-
-            // If not signed in, redirect to SAML login
-            if (!isset($_SESSION['samlNameId'])) {
-                $auth->login();
-                exit;
-            }
-        }
-    }
     return false;
 }
 
@@ -98,7 +73,7 @@ function wlabarron_saml_intercept_admin() {
     }
 
     // Intercept requests for plugin management
-    if (isset($_SERVER['REQUEST_URI']) &&
+    if(isset($_SERVER['REQUEST_URI']) &&
         preg_match('/\/admin\/plugins/', $_SERVER['REQUEST_URI'])) {
 
         if (!wlabarron_saml_is_user_in_config()) {
@@ -123,4 +98,12 @@ function wlabarron_saml_is_user_in_config() {
     $users = array_keys($yourls_user_passwords);
 
     return in_array(YOURLS_USER, $users);
+}
+
+// Helper function to get current URL
+function wlabarron_saml_get_current_url() {
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = $_SERVER['REQUEST_URI'];
+    return $protocol . $host . $uri;
 }
