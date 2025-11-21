@@ -36,6 +36,7 @@ hooks:
 disk: 2048
 
 # The configuration of app when it is exposed to the web.
+# .platform.app.yaml (Corrected version)
 web:
     locations:
         "/":
@@ -45,20 +46,16 @@ web:
             index:
                 - index.php
             passthru: "/yourls-loader.php"
-            # Add these cookie settings
             headers:
-                "Set-Cookie":
-                    value: "SameSite=None; Secure"
+                Set-Cookie: "SameSite=None; Secure"
         "/admin/auth":
             root: "user/plugins/yourls-saml/public"
             allow: true
             scripts: true
             index:
                 - index.php
-            # Match cookie settings with parent location
             headers:
-                "Set-Cookie":
-                    value: "SameSite=None; Secure"
+                Set-Cookie: "SameSite=None; Secure"
 
 source:
     operations:
