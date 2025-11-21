@@ -40,8 +40,16 @@ $_SESSION['samlNameIdSPNameQualifier'] = $auth->getNameIdSPNameQualifier();
 $_SESSION['samlSessionIndex'] = $auth->getSessionIndex();
 unset($_SESSION['AuthNRequestID']);
 
-if (isset($_POST['RelayState']) && \OneLogin\Saml2\Utils::getSelfURL() != $_POST['RelayState']) {
-    $auth->redirectTo($_POST['RelayState']);
+// Determine where to redirect after successful authentication
+if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
+    $redirectTo = $_POST['RelayState'];
+} elseif (isset($_SESSION['saml_return_to'])) {
+    $redirectTo = $_SESSION['saml_return_to'];
+    unset($_SESSION['saml_return_to']);
 } else {
-    $auth->redirectTo("/admin");
+    // Default to admin URL
+    $redirectTo = rtrim($wlabarron_saml_yourls_base_url, '/') . '/admin/';
 }
+
+// Redirect to the appropriate page
+$auth->redirectTo($redirectTo);
