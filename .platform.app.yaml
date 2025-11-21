@@ -37,7 +37,6 @@ disk: 2048
 
 # The configuration of app when it is exposed to the web.
 # .platform.app.yaml (Corrected version)
-# .platform.app.yaml (Corrected version)
 web:
     locations:
         "/":
