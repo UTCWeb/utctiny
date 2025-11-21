@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  SP Assertion Consumer Service Endpoint
  */
@@ -47,8 +46,20 @@ if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
     $redirectTo = $_SESSION['saml_return_to'];
     unset($_SESSION['saml_return_to']);
 } else {
-    // Default to admin URL
-    $redirectTo = rtrim($wlabarron_saml_yourls_base_url, '/') . '/admin/';
+    // Default to home URL
+    $redirectTo = $wlabarron_saml_yourls_base_url;
+}
+
+// Make sure the cookie is properly set before redirecting
+if (session_name() && isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), $_COOKIE[session_name()], [
+        'expires' => 0,
+        'path' => '/',
+        'domain' => '',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'None'
+    ]);
 }
 
 // Redirect to the appropriate page

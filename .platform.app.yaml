@@ -45,12 +45,20 @@ web:
             index:
                 - index.php
             passthru: "/yourls-loader.php"
+            # Add these cookie settings
+            headers:
+                "Set-Cookie":
+                    value: "SameSite=None; Secure"
         "/admin/auth":
             root: "user/plugins/yourls-saml/public"
             allow: true
             scripts: true
             index:
                 - index.php
+            # Match cookie settings with parent location
+            headers:
+                "Set-Cookie":
+                    value: "SameSite=None; Secure"
 
 source:
     operations:

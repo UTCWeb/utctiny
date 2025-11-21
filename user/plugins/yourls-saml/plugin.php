@@ -8,17 +8,62 @@ Author: Andrew Barron, Chris Gilligan
 Author URI: https://go.utc.edu
 */
 
+// Global cookie settings to ensure consistent behavior
+$cookie_params = [
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '', // Auto-detect
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'None' // For cross-site authentication
+];
+
 // Initialize session early but safely
 function wlabarron_saml_init_session() {
-    if (!yourls_is_API() && !isset($_SESSION) && php_sapi_name() !== 'cli' && !headers_sent()) {
-        session_start();
+    global $cookie_params;
+
+    if (!yourls_is_API() && !isset($_SESSION) && php_sapi_name() !== 'cli') {
+        if (!headers_sent()) {
+            // Set cookie parameters before starting session
+            session_set_cookie_params($cookie_params);
+            session_start();
+
+            // Force the session cookie to be secure and SameSite=None
+            if (isset($_COOKIE[session_name()])) {
+                setcookie(session_name(), $_COOKIE[session_name()],
+                    [
+                        'expires' => 0,
+                        'path' => '/',
+                        'domain' => '',
+                        'secure' => true,
+                        'httponly' => true,
+                        'samesite' => 'None'
+                    ]
+                );
+            }
+        }
     }
 }
+
 // Add this as an early filter to start session before any output
 yourls_add_action('load_template_login', 'wlabarron_saml_init_session', 5);
 yourls_add_action('admin_init', 'wlabarron_saml_init_session', 5);
+yourls_add_action('html_head', 'wlabarron_saml_init_session', 5);
+yourls_add_action('pre_yourls_require_template', 'wlabarron_saml_init_session', 5);
 
-// Main authentication function
+// Special hook for frontend form
+yourls_add_action('pre_html_form', 'wlabarron_saml_check_frontend_auth', 5);
+function wlabarron_saml_check_frontend_auth() {
+    // Initialize session
+    wlabarron_saml_init_session();
+
+    // If we have a valid SAML session, ensure user is set for frontend
+    if (isset($_SESSION['samlNameId'])) {
+        yourls_set_user($_SESSION['samlNameId']);
+    }
+}
+
+// Handle both frontend and admin login
 yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
 function wlabarron_saml_authenticate() {
     if (yourls_is_API()) {
@@ -26,8 +71,8 @@ function wlabarron_saml_authenticate() {
     }
 
     // Initialize session if not already started
-    if (!isset($_SESSION) && !headers_sent()) {
-        session_start();
+    if (!isset($_SESSION)) {
+        wlabarron_saml_init_session();
     }
 
     // If we have a valid SAML session, use it
