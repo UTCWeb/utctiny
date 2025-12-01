@@ -33,6 +33,8 @@ yourls_add_action('load_template_login', 'wlabarron_saml_init_session', 1);
 yourls_add_action('admin_init', 'wlabarron_saml_init_session', 1);
 yourls_add_action('html_head', 'wlabarron_saml_init_session', 1);
 yourls_add_action('pre_html_form', 'wlabarron_saml_init_session', 1);
+yourls_add_action('pre_yourls_serve_request', 'wlabarron_saml_init_session', 1);
+yourls_add_action('load_template_redirect_admin', 'wlabarron_saml_init_session', 1);
 
 // Main authentication function
 yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
@@ -70,14 +72,6 @@ function wlabarron_saml_authenticate() {
     }
 
     return false;
-}
-
-// Special hook for frontend form to ensure it uses SAML auth
-yourls_add_action('pre_html_form', 'wlabarron_saml_check_frontend_auth', 5);
-function wlabarron_saml_check_frontend_auth() {
-    if (isset($_SESSION) && isset($_SESSION['samlNameId'])) {
-        yourls_set_user($_SESSION['samlNameId']);
-    }
 }
 
 // Remove log out link from "hello" message
@@ -130,4 +124,16 @@ function wlabarron_saml_get_current_url() {
     $host = $_SERVER['HTTP_HOST'];
     $uri = $_SERVER['REQUEST_URI'];
     return $protocol . $host . $uri;
+}
+
+// Include the frontend authentication handling
+require_once(__DIR__ . '/frontend-auth.php');
+
+// Add hook to check and enforce authentication for the form
+yourls_add_action('html_form', 'wlabarron_saml_ensure_frontend_auth', 1);
+function wlabarron_saml_ensure_frontend_auth() {
+    // If we're displaying the form and have a SAML session, ensure user is set
+    if (isset($_SESSION['samlNameId'])) {
+        yourls_set_user($_SESSION['samlNameId']);
+    }
 }
