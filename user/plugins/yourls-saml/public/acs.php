@@ -60,9 +60,11 @@ if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
 
     // Special handling for root URL - force admin area first to ensure authentication
     if ($redirectTo === $homeUrl || $redirectTo === $homeUrl . '/') {
-        // First redirect to admin to establish session, then back to home
+        // Store the final destination in session
         $_SESSION['final_redirect'] = $homeUrl;
-        $redirectTo = $adminUrl;
+
+        // First, redirect to admin to establish session properly
+        $redirectTo = $adminUrl . '?action=auth_redirect&dest=' . urlencode($homeUrl);
     }
 } elseif (isset($_SESSION['saml_return_to'])) {
     $redirectTo = $_SESSION['saml_return_to'];
@@ -70,8 +72,11 @@ if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
 
     // Special handling for root URL - force admin area first to ensure authentication
     if ($redirectTo === $homeUrl || $redirectTo === $homeUrl . '/') {
+        // Store the final destination in session
         $_SESSION['final_redirect'] = $homeUrl;
-        $redirectTo = $adminUrl;
+
+        // First, redirect to admin to establish session properly
+        $redirectTo = $adminUrl . '?action=auth_redirect&dest=' . urlencode($homeUrl);
     }
 } else {
     // Default to admin area
@@ -88,20 +93,6 @@ if (session_name() && isset($_COOKIE[session_name()])) {
         'httponly' => true,
         'samesite' => 'None'
     ]);
-}
-
-// Add special hook for admin area to check for final redirect
-if ($redirectTo === $adminUrl && isset($_SESSION['final_redirect'])) {
-    yourls_add_action('admin_init', 'wlabarron_saml_handle_final_redirect');
-
-    function wlabarron_saml_handle_final_redirect() {
-        if (isset($_SESSION['final_redirect'])) {
-            $finalRedirect = $_SESSION['final_redirect'];
-            unset($_SESSION['final_redirect']);
-            yourls_redirect($finalRedirect, 302);
-            exit;
-        }
-    }
 }
 
 // Redirect to the appropriate page
