@@ -44,15 +44,64 @@ $_SESSION['samlNameIdSPNameQualifier'] = $auth->getNameIdSPNameQualifier();
 $_SESSION['samlSessionIndex'] = $auth->getSessionIndex();
 unset($_SESSION['AuthNRequestID']);
 
+// Debug - useful for troubleshooting
+if ($auth->getSettings()->isDebugActive()) {
+    error_log('SAML Auth successful for: ' . $_SESSION['samlNameId']);
+    error_log('Session ID: ' . session_id());
+}
+
+// Special handling for the root URL
+$homeUrl = rtrim($wlabarron_saml_yourls_base_url, '/');
+$adminUrl = $wlabarron_saml_yourls_base_url . 'admin/';
+
 // Determine redirect URL
 if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
     $redirectTo = $_POST['RelayState'];
+
+    // Special handling for root URL - force admin area first to ensure authentication
+    if ($redirectTo === $homeUrl || $redirectTo === $homeUrl . '/') {
+        // First redirect to admin to establish session, then back to home
+        $_SESSION['final_redirect'] = $homeUrl;
+        $redirectTo = $adminUrl;
+    }
 } elseif (isset($_SESSION['saml_return_to'])) {
     $redirectTo = $_SESSION['saml_return_to'];
     unset($_SESSION['saml_return_to']);
+
+    // Special handling for root URL - force admin area first to ensure authentication
+    if ($redirectTo === $homeUrl || $redirectTo === $homeUrl . '/') {
+        $_SESSION['final_redirect'] = $homeUrl;
+        $redirectTo = $adminUrl;
+    }
 } else {
-    // Default to home URL
-    $redirectTo = $wlabarron_saml_yourls_base_url;
+    // Default to admin area
+    $redirectTo = $adminUrl;
+}
+
+// Force cookie session parameters
+if (session_name() && isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), $_COOKIE[session_name()], [
+        'expires' => 0,
+        'path' => '/',
+        'domain' => '',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'None'
+    ]);
+}
+
+// Add special hook for admin area to check for final redirect
+if ($redirectTo === $adminUrl && isset($_SESSION['final_redirect'])) {
+    yourls_add_action('admin_init', 'wlabarron_saml_handle_final_redirect');
+
+    function wlabarron_saml_handle_final_redirect() {
+        if (isset($_SESSION['final_redirect'])) {
+            $finalRedirect = $_SESSION['final_redirect'];
+            unset($_SESSION['final_redirect']);
+            yourls_redirect($finalRedirect, 302);
+            exit;
+        }
+    }
 }
 
 // Redirect to the appropriate page
