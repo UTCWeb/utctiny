@@ -36,6 +36,37 @@ yourls_add_action('pre_html_form', 'wlabarron_saml_init_session', 1);
 yourls_add_action('pre_yourls_serve_request', 'wlabarron_saml_init_session', 1);
 yourls_add_action('load_template_redirect_admin', 'wlabarron_saml_init_session', 1);
 
+// Handle special redirect from ACS.php
+yourls_add_action('admin_init', 'wlabarron_saml_handle_auth_redirect');
+function wlabarron_saml_handle_auth_redirect() {
+    // Check if this is a special redirect request
+    if (isset($_GET['action']) && $_GET['action'] === 'auth_redirect' && isset($_GET['dest'])) {
+        // Ensure session is established
+        wlabarron_saml_init_session();
+
+        // Verify we have a valid SAML session
+        if (!isset($_SESSION['samlNameId'])) {
+            return; // Not authenticated, let normal flow continue
+        }
+
+        // Set user for YOURLS
+        yourls_set_user($_SESSION['samlNameId']);
+
+        // Redirect to destination
+        $destination = $_GET['dest'];
+        yourls_redirect($destination);
+        exit;
+    }
+
+    // Also check for final_redirect from session
+    if (isset($_SESSION['final_redirect'])) {
+        $finalRedirect = $_SESSION['final_redirect'];
+        unset($_SESSION['final_redirect']);
+        yourls_redirect($finalRedirect);
+        exit;
+    }
+}
+
 // Main authentication function
 yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
 function wlabarron_saml_authenticate() {
@@ -126,8 +157,44 @@ function wlabarron_saml_get_current_url() {
     return $protocol . $host . $uri;
 }
 
-// Include the frontend authentication handling
-require_once(__DIR__ . '/frontend-auth.php');
+// Special handling for the root URL (frontend)
+yourls_add_action('pre_yourls_require_template', 'wlabarron_saml_check_template');
+function wlabarron_saml_check_template($template) {
+    // Initialize session
+    wlabarron_saml_init_session();
+
+    // If this is the index template (frontend form) and we're authenticated
+    if ($template === 'index.php' && isset($_SESSION['samlNameId'])) {
+        yourls_set_user($_SESSION['samlNameId']);
+    }
+}
+
+// Intercept the root URL when loading fails to show frontend form for authenticated users
+yourls_add_action('loader_failed', 'wlabarron_saml_handle_root_url');
+function wlabarron_saml_handle_root_url($request) {
+    // Only process empty requests (root URL)
+    if ($request !== '') {
+        return;
+    }
+
+    // Initialize session
+    wlabarron_saml_init_session();
+
+    // If user is authenticated via SAML, show the frontend form
+    if (isset($_SESSION['samlNameId'])) {
+        // Set the user for YOURLS
+        yourls_set_user($_SESSION['samlNameId']);
+
+        // Force display of the frontend form for logged in users
+        include_once(YOURLS_ABSPATH . '/includes/functions-html.php');
+        yourls_html_head('new');
+        yourls_html_logo();
+        yourls_html_menu();
+        yourls_html_form();
+        yourls_html_footer();
+        exit;
+    }
+}
 
 // Add hook to check and enforce authentication for the form
 yourls_add_action('html_form', 'wlabarron_saml_ensure_frontend_auth', 1);
