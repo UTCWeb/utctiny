@@ -8,75 +8,41 @@ Author: Andrew Barron, Chris Gilligan
 Author URI: https://go.utc.edu
 */
 
-// Global cookie settings to ensure consistent behavior
-$cookie_params = [
-    'lifetime' => 0,
-    'path' => '/',
-    'domain' => '', // Auto-detect
-    'secure' => true,
-    'httponly' => true,
-    'samesite' => 'None' // For cross-site authentication
-];
-
-// Initialize session early but safely
+// Very early session management
+// This needs to happen before any output is sent
 function wlabarron_saml_init_session() {
-    global $cookie_params;
-
-    if (!yourls_is_API() && !isset($_SESSION) && php_sapi_name() !== 'cli') {
-        if (!headers_sent()) {
-            // Set cookie parameters before starting session
-            session_set_cookie_params($cookie_params);
-            session_start();
-
-            // Force the session cookie to be secure and SameSite=None
-            if (isset($_COOKIE[session_name()])) {
-                setcookie(session_name(), $_COOKIE[session_name()],
-                    [
-                        'expires' => 0,
-                        'path' => '/',
-                        'domain' => '',
-                        'secure' => true,
-                        'httponly' => true,
-                        'samesite' => 'None'
-                    ]
-                );
-            }
-        }
+    if (yourls_is_API() || isset($_SESSION) || php_sapi_name() === 'cli' || headers_sent()) {
+        return; // Skip if not needed or not possible
     }
+
+    // Set cookie parameters before starting session
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'None'
+    ]);
+
+    session_start();
 }
 
-// Add this as an early filter to start session before any output
-yourls_add_action('load_template_login', 'wlabarron_saml_init_session', 5);
-yourls_add_action('admin_init', 'wlabarron_saml_init_session', 5);
-yourls_add_action('html_head', 'wlabarron_saml_init_session', 5);
-yourls_add_action('pre_yourls_require_template', 'wlabarron_saml_init_session', 5);
+// Register this function as early as possible with various hooks
+yourls_add_action('pre_yourls_require_template', 'wlabarron_saml_init_session', 1);
+yourls_add_action('load_template_login', 'wlabarron_saml_init_session', 1);
+yourls_add_action('admin_init', 'wlabarron_saml_init_session', 1);
+yourls_add_action('html_head', 'wlabarron_saml_init_session', 1);
+yourls_add_action('pre_html_form', 'wlabarron_saml_init_session', 1);
 
-// Special hook for frontend form
-yourls_add_action('pre_html_form', 'wlabarron_saml_check_frontend_auth', 5);
-function wlabarron_saml_check_frontend_auth() {
-    // Initialize session
-    wlabarron_saml_init_session();
-
-    // If we have a valid SAML session, ensure user is set for frontend
-    if (isset($_SESSION['samlNameId'])) {
-        yourls_set_user($_SESSION['samlNameId']);
-    }
-}
-
-// Handle both frontend and admin login
+// Main authentication function
 yourls_add_filter('shunt_is_valid_user', 'wlabarron_saml_authenticate');
 function wlabarron_saml_authenticate() {
     if (yourls_is_API()) {
         return false; // Don't use SAML for API requests
     }
 
-    // Initialize session if not already started
-    if (!isset($_SESSION)) {
-        wlabarron_saml_init_session();
-    }
-
     // If we have a valid SAML session, use it
-    if (isset($_SESSION['samlNameId'])) {
+    if (isset($_SESSION) && isset($_SESSION['samlNameId'])) {
         yourls_set_user($_SESSION['samlNameId']);
         return true;
     }
@@ -89,6 +55,11 @@ function wlabarron_saml_authenticate() {
         if (isset($wlabarron_saml_settings)) {
             $auth = new \OneLogin\Saml2\Auth($wlabarron_saml_settings);
 
+            // Make sure we have a session started
+            if (!isset($_SESSION)) {
+                wlabarron_saml_init_session();
+            }
+
             // Store the current URL for returning after auth
             $_SESSION['saml_return_to'] = wlabarron_saml_get_current_url();
 
@@ -99,6 +70,14 @@ function wlabarron_saml_authenticate() {
     }
 
     return false;
+}
+
+// Special hook for frontend form to ensure it uses SAML auth
+yourls_add_action('pre_html_form', 'wlabarron_saml_check_frontend_auth', 5);
+function wlabarron_saml_check_frontend_auth() {
+    if (isset($_SESSION) && isset($_SESSION['samlNameId'])) {
+        yourls_set_user($_SESSION['samlNameId']);
+    }
 }
 
 // Remove log out link from "hello" message
