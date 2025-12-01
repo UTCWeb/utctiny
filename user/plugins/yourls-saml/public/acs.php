@@ -60,23 +60,16 @@ if (isset($_POST['RelayState']) && !empty($_POST['RelayState'])) {
 
     // Special handling for root URL - force admin area first to ensure authentication
     if ($redirectTo === $homeUrl || $redirectTo === $homeUrl . '/') {
-        // Store the final destination in session
-        $_SESSION['final_redirect'] = $homeUrl;
-
-        // First, redirect to admin to establish session properly
-        $redirectTo = $adminUrl . '?action=auth_redirect&dest=' . urlencode($homeUrl);
+        // For the root URL, add our special parameter
+        $redirectTo = $homeUrl . '/?auth_maintain=1';
     }
 } elseif (isset($_SESSION['saml_return_to'])) {
     $redirectTo = $_SESSION['saml_return_to'];
     unset($_SESSION['saml_return_to']);
 
-    // Special handling for root URL - force admin area first to ensure authentication
+    // Special handling for root URL - add our parameter
     if ($redirectTo === $homeUrl || $redirectTo === $homeUrl . '/') {
-        // Store the final destination in session
-        $_SESSION['final_redirect'] = $homeUrl;
-
-        // First, redirect to admin to establish session properly
-        $redirectTo = $adminUrl . '?action=auth_redirect&dest=' . urlencode($homeUrl);
+        $redirectTo = $homeUrl . '/?auth_maintain=1';
     }
 } else {
     // Default to admin area
