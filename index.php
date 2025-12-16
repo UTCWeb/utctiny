@@ -1,7 +1,7 @@
 <?php
 // Start YOURLS engine and require auth before any output
 define('YOURLS_ADMIN', true); // require auth
-require_once dirname(__FILE__) . '/includes/load-yourls.php';
+require_once __DIR__ . '/includes/load-yourls.php';
 yourls_maybe_require_auth(); // require auth
 
 // URL of the public interface
@@ -11,18 +11,19 @@ $page = YOURLS_SITE . '/index.php';
 $shorturl = $message = $title = $status = '';
 
 // Part to be executed if FORM has been submitted
-if (isset($_REQUEST['url']) && $_REQUEST['url'] != 'http://') {
-    if (enableRecaptcha) {
+if (isset($_REQUEST['url']) && $_REQUEST['url'] !== 'http://') {
+    // Only use reCAPTCHA if the UI constant exists and is enabled
+    if (defined('enableRecaptcha') && enableRecaptcha) {
         // Use reCAPTCHA
-        $token  = $_POST['token'];
-        $action = $_POST['action'];
+        $token  = $_POST['token']  ?? '';
+        $action = $_POST['action'] ?? '';
 
         // call curl to POST request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-            'secret'   => recaptchaV3SecretKey,
+            'secret'   => defined('recaptchaV3SecretKey') ? recaptchaV3SecretKey : '',
             'response' => $token,
         ]));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -31,9 +32,9 @@ if (isset($_REQUEST['url']) && $_REQUEST['url'] != 'http://') {
         $arrResponse = json_decode($response, true);
 
         // verify the response
-        if ($arrResponse["success"] == '1'
-            && $arrResponse["action"] == $action
-            && $arrResponse["score"] >= 0.5
+        if (!empty($arrResponse["success"])
+            && (!isset($arrResponse["action"]) || $arrResponse["action"] === $action)
+            && (isset($arrResponse["score"]) && $arrResponse["score"] >= 0.5)
         ) {
             // reCAPTCHA succeeded
             shorten();
@@ -67,7 +68,7 @@ function shorten()
     $status   = isset($return['status']) ? $return['status'] : '';
 
     // Stop here if bookmarklet with a JSON callback function ("instant" bookmarklets)
-    if (isset($_GET['jsonp']) && $_GET['jsonp'] == 'yourls') {
+    if (isset($_GET['jsonp']) && $_GET['jsonp'] === 'yourls') {
         $short   = $return['shorturl'] ? $return['shorturl'] : '';
         $message = "Short URL (Ctrl+C to copy)";
         header('Content-type: application/json');
@@ -128,7 +129,7 @@ function shorten()
                                 <input type="url" name="url" id="url" class="form-control text-uppercase" placeholder="PASTE URL, SHORTEN and SHARE" aria-label="PASTE URL, SHORTEN &amp; SHARE" aria-describedby="shorten-button" required>
                                 <input class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0" type="submit" id="shorten-button" value="Shorten" />
                             </div>
-                            <?php if (enableCustomURL): ?>
+                            <?php if (defined('enableCustomURL') && enableCustomURL): ?>
                                 <a class="btn btn-sm btn-white text-black-50 text-uppercase" data-bs-toggle="collapse" href="#customise-link" role="button" aria-expanded="false" aria-controls="customise-link">
                                     <img src="<?php echo YOURLS_SITE ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customize Link
                                 </a>
