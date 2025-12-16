@@ -46,16 +46,6 @@ web:
             index:
                 - index.php
             passthru: "/yourls-loader.php"
-            headers:
-                Set-Cookie: "SameSite=None; Secure"
-        "/admin/auth":
-            root: "user/plugins/yourls-saml/public"
-            allow: true
-            scripts: true
-            index:
-                - index.php
-            headers:
-                Set-Cookie: "SameSite=None; Secure"
 
 source:
     operations:
