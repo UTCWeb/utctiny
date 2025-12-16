@@ -50,8 +50,6 @@ web:
             root: "user/plugins/yourls-saml/public"
             allow: true
             scripts: true
-            index:
-                - index.php
 
 source:
     operations:
