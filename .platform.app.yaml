@@ -50,6 +50,13 @@ web:
             root: "user/plugins/yourls-saml/public"
             allow: true
             scripts: true
+        "/healthyourlsdatabase":
+            root: ""
+            scripts: true
+            allow: true
+            index:
+                - healthchecker.php
+
 
 source:
     operations:
