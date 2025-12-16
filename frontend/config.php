@@ -20,7 +20,7 @@ define('logo', '/frontend/assets/svg/utc-wordmark-reverse.svg');
 
 // Enable reCAPTCHA V3
 // It is highly recommended you use reCAPTCHA V3. It will stop spam. You can get a site and secret key from here: https://www.google.com/recaptcha/admin/create
-define("enableRecaptcha", true);
+define("enableRecaptcha", false);
 
 // reCAPTCHA V3 Site Key
 define("recaptchaV3SiteKey", '6LfgoQssAAAAAB_UqQtwNSCcsUab6v-EXAuykF4U');
