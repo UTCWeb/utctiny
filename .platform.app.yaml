@@ -46,6 +46,10 @@ web:
             index:
                 - index.php
             passthru: "/yourls-loader.php"
+        "/admin/auth":
+            root: "user/plugins/yourls-saml/public"
+            allow: true
+            scripts: true
 
 source:
     operations:
