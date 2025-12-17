@@ -79,14 +79,15 @@ $isDdev      = getenv('IS_DDEV_PROJECT') === 'true';
 // Decide whether debug should be enabled:
 //
 // - DDEV local: always true
-// - Platform.sh: true for all environments except 'main'
-// - Other environments (no PLATFORM_ENVIRONMENT & not DDEV): you can choose;
-//   here we default to false for safety.
+// - Platform.sh: false for "main-*" env names, true otherwise
+// - Other hosting: default to false for safety
 if ($isDdev) {
     $debugEnabled = true;
 } elseif ($platformEnv !== '') {
     // On Platform.sh
-    $debugEnabled = ($platformEnv !== 'main');
+    // Treat any environment whose name starts with 'main-' as production
+    $isMainProd = (strpos($platformEnv, 'main-') === 0);
+    $debugEnabled = !$isMainProd;
 } else {
     // Other hosting
     $debugEnabled = false;
