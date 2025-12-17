@@ -70,19 +70,46 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
 }
 
-if (getenv('PLATFORM_ENVIRONMENT') !== 'main') {
-    // This code will only run in non-production environments
-    /** Debug mode to output some internal information
-     ** Default is false for live site. Enable when coding or before submitting a new issue */
-    define( 'YOURLS_DEBUG', true );
-    ini_set('display_errors', 1);
+// ---------- Environment-aware YOURLS_DEBUG ----------
+
+// Detect environments
+$platformEnv = getenv('PLATFORM_ENVIRONMENT') ?: '';
+$isDdev      = getenv('IS_DDEV_PROJECT') === 'true';
+
+// Decide whether debug should be enabled:
+//
+// - DDEV local: always true
+// - Platform.sh: false for "main-*" env names, true otherwise
+// - Other hosting: default to false for safety
+if ($isDdev) {
+    $debugEnabled = true;
+} elseif ($platformEnv !== '') {
+    // On Platform.sh
+    // Treat any environment whose name starts with 'main-' as production
+    $isMainProd = (strpos($platformEnv, 'main-') === 0);
+    $debugEnabled = !$isMainProd;
+} else {
+    // Other hosting
+    $debugEnabled = false;
+}
+
+// Make this file authoritative about YOURLS_DEBUG
+if (defined('YOURLS_DEBUG')) {
+    error_log('YOURLS: YOURLS_DEBUG was already defined, overriding in user/config.php');
+}
+define('YOURLS_DEBUG', $debugEnabled);
+
+// Apply PHP error settings consistent with YOURLS_DEBUG
+if (YOURLS_DEBUG) {
+    error_log("YOURLS: debug ENABLED (platformEnv='$platformEnv', isDdev=" . ($isDdev ? 'true' : 'false') . ')');
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
 } else {
-    // This code will only run in the production environment
-    define( 'YOURLS_DEBUG', false );
+    error_log("YOURLS: debug DISABLED (platformEnv='$platformEnv', isDdev=" . ($isDdev ? 'true' : 'false') . ')');
     error_reporting(0);
-    ini_set('display_errors', 0);
-    // ... other production-specific settings
+    ini_set('display_errors', '0');
+    ini_set('display_startup_errors', '0');
 }
 
 /** YOURLS language
