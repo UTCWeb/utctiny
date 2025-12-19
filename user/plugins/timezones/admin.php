@@ -245,8 +245,8 @@ function yourls_tzp_format_radio( $title, $input_name, $formats, $tz, $selected,
 
     $checked = ( 'custom' === $selected ) ? 'checked="checked"' : '' ;
     $preview = date( $custom, yourls_tzp_timezoned_timestamp( time(), $tz ) );
-    print "<label class='custom'><input type='radio' id='${input_name}_custom' name='$input_name' value='custom' $checked >
-           Custom: <input type='text' class='text custom_format' id='${input_name}_custom_value' name='${input_name}_custom_value' value='$custom' />
+    print "<label class='custom'><input type='radio' id='{$input_name}_custom' name='$input_name' value='custom' $checked >
+           Custom: <input type='text' class='text custom_format' id='{$input_name}_custom_value' name='{$input_name}_custom_value' value='$custom' />
            <span class='tz_test' id='tz_test_$input_name'>$preview</span>
            </label>\n";
 
