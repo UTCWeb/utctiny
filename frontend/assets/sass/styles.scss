@@ -81,3 +81,27 @@ $border-radius: 6px;
         }
     }
 }
+
+/* Extra styling for the skip link when it becomes visible */
+.skip-link {
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1050;
+}
+
+.skip-link:focus {
+    outline: 3px solid #ffc107;
+}
+
+/* Highlight the "Customize Link" toggle when it has keyboard focus */
+.btn.btn-link:focus,
+.btn.btn-link:focus-visible {
+    outline: 3px solid #ffc107 !important;        // strong yellow outline
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, .5) !important;
+}

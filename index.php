@@ -84,6 +84,22 @@ function shorten()
 <?php include 'frontend/header.php'; ?>
 
 <body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var customiseLink = document.getElementById('customise-link');
+        if (!customiseLink) return;
+
+        customiseLink.addEventListener('shown.bs.collapse', function () {
+            var keywordInput = document.getElementById('keyword');
+            if (keywordInput) {
+                keywordInput.focus();
+            }
+        });
+    });
+</script>
+<a href="#long-url" class="visually-hidden-focusable skip-link">
+  Skip to Long URL input field
+</a>
 <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="col-12 col-lg-10 col-xl-8 col-xxl-5 mt-5">
@@ -126,18 +142,52 @@ function shorten()
 
                         <form id="shortenlink" method="post" action="">
                             <div class="input-group input-group-block mt-4 mb-3">
-                                <input type="url" name="url" id="url" class="form-control text-uppercase" placeholder="PASTE URL, SHORTEN and SHARE" aria-label="PASTE URL, SHORTEN &amp; SHARE" aria-describedby="shorten-button" required>
-                                <input class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0" type="submit" id="shorten-button" value="Shorten" />
+                                <label for="long-url" class="form-label visually-hidden-focusable">Long URL</label>
+
+                                <input
+                                    type="url"
+                                    name="url"
+                                    id="long-url"
+                                    class="form-control text-uppercase"
+                                    placeholder="PASTE URL, SHORTEN and SHARE"
+                                    aria-label="PASTE URL, SHORTEN &amp; SHARE"
+                                    aria-describedby="shorten-button"
+                                    required
+                                    tabindex="1"
+                                >
+                                <input
+                                    class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0"
+                                    type="submit"
+                                    id="shorten-button"
+                                    value="Shorten"
+                                    tabindex="4"
+                                />
                             </div>
                             <?php if (defined('enableCustomURL') && enableCustomURL): ?>
-                                <a class="btn btn-sm btn-white text-black-50 text-uppercase" data-bs-toggle="collapse" href="#customise-link" role="button" aria-expanded="false" aria-controls="customise-link">
+                                <a
+                                    class="btn btn-sm btn-white btn-link btn-customize-link text-black-50 text-uppercase"
+                                    data-bs-toggle="collapse"
+                                    href="#customise-link"
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-controls="customise-link"
+                                    tabindex="2"
+                                >
                                     <img src="<?php echo YOURLS_SITE ?>/frontend/assets/svg/custom-url.svg" alt="Options"> Customize Link
                                 </a>
                                 <div class="collapse" id="customise-link">
                                     <div class="mt-2 card card-body">
                                         <div class="d-flex  align-items-center">
                                             <span class="me-2"><?php echo preg_replace("(^https?://)", "", YOURLS_SITE); ?>/</span>
-                                            <input type="text" name="keyword" class="form-control form-control-sm text-uppercase" placeholder="CUSTOM URL" aria-label="CUSTOM URL">
+                                            <input
+                                                type="text"
+                                                id="keyword"
+                                                name="keyword"
+                                                class="form-control form-control-sm text-uppercase"
+                                                placeholder="CUSTOM URL"
+                                                aria-label="CUSTOM URL"
+                                                tabindex="3"
+                                            >
                                         </div>
                                     </div>
                                 </div>
