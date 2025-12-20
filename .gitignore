@@ -2,10 +2,9 @@
 .htaccess
 includes/vendor/*
 !includes/vendor/.gitkeep
-user/plugins/*/vendor/*
 
-# environment-specific config
-user/config.php
+# do not commit plugin dependencies
+user/plugins/*/vendor/*
 
 # frontend tooling
 frontend/node_modules

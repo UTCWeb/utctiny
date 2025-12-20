@@ -1,9 +1,9 @@
 <?php
+// Load UI config and helpers. These do NOT start sessions or send headers.
 include 'config.php';
 include 'functions.php';
 ?>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-compatible" content="IE=edge">
@@ -13,7 +13,7 @@ include 'functions.php';
 
     <title><?php echo title ?></title>
 
-    <link rel="stylesheet" href="<?php $YOURLS_SITE ?>/frontend/dist/styles.css">
+    <link rel="stylesheet" href="<?php echo YOURLS_SITE; ?>/frontend/dist/styles.css">
 
     <?php if (defined('backgroundImage')) : ?>
         <style>

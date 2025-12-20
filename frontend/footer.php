@@ -1,11 +1,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 <script>
 	// From https://stackoverflow.com/a/30810322
 	function fallbackCopyTextToClipboard(text) {
 		var textArea = document.createElement("textarea");
 		textArea.value = text;
-		
+
 		// Avoid scrolling to bottom
 		textArea.style.top = "0";
 		textArea.style.left = "0";
@@ -69,12 +70,12 @@
 						tokenInput.setAttribute("type", "hidden");
 						tokenInput.setAttribute("name", "token");
 						tokenInput.setAttribute("value", token);
-						
+
 						const actionInput = document.createElement("input");
 						actionInput.setAttribute("type", "hidden");
 						actionInput.setAttribute("name", "action");
 						actionInput.setAttribute("value", "shorten_link");
-						
+
 						shortenForm.prepend(tokenInput);
 						shortenForm.prepend(actionInput);
 						shortenForm.submit();
