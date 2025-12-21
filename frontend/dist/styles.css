@@ -9370,7 +9370,7 @@ textarea.form-control-lg {
     border-radius: 6px !important;
   }
 }
-img.login-logo {
+.login .login-logo {
   background: #112e51;
   border: 6px solid #112e51;
   border-radius: 4px;

@@ -182,9 +182,9 @@ select:hover {
 
 // End Notification Bar
 
-// 
+//
 // Login page
-// 
+//
 .login {
   #wrap {
     margin: auto;
@@ -199,8 +199,11 @@ select:hover {
     width: 150px;
     margin: 30px auto;
     display: flex;
+    background: #112e51;
+    border: 6px solid #112e51;
+    border-radius: 4px;
+    padding: 4px;
   }
-
   input.text {
     width: 270px !important;
   }
@@ -238,7 +241,7 @@ select:hover {
 
 // End login page
 
-// 
+//
 // Start Index page
 //
 .index {
@@ -428,7 +431,7 @@ select:hover {
     $icons-list: stats, share, edit, delete;
     @each $icon in $icons-list {
       @if $icon == delete {
-        td.actions .button_#{$icon} { 
+        td.actions .button_#{$icon} {
           background: red url(../img/#{$icon}.png) 0px center no-repeat;
           background-size: 23px;
           background-position: center;
@@ -436,14 +439,14 @@ select:hover {
           padding: 3px;
           border-radius: 2px;
 
-          &:hover { 
+          &:hover {
             background: darken(red, 10%) url(../img/#{$icon}.png) 0px center no-repeat;
             background-size: 23px;
             background-position: center;
           }
         }
       } @else {
-        td.actions .button_#{$icon} { 
+        td.actions .button_#{$icon} {
           background: $accent url(../img/#{$icon}.png) 0px center no-repeat;
           background-size: 23px;
           background-position: center;
@@ -451,7 +454,7 @@ select:hover {
           padding: 3px;
           border-radius: 2px;
 
-          &:hover { 
+          &:hover {
             background: darken($accent, 10%) url(../img/#{$icon}.png) 0px center no-repeat;
             background-size: 23px;
             background-position: center;
@@ -465,9 +468,9 @@ select:hover {
 // End index page
 
 
-// 
+//
 // Nav
-// 
+//
 nav {
   background: $default;
   height: 100%;
@@ -546,7 +549,7 @@ header {
 
 //
 // Information
-// 
+//
 #wrap {
   #tabs {
     min-width: 580px;
@@ -616,9 +619,9 @@ header {
   }
 }
 
-// 
+//
 // General Styles
-// 
+//
 
 body.index #wrap {
   padding-top: 50px;
@@ -696,8 +699,8 @@ code {
 
   code,
   tt {
-    background: rgba(0, 123, 255, 0.7);  
-    
+    background: rgba(0, 123, 255, 0.7);
+
     @if ($theme == "light") {
       background: rgba(35, 185, 222, 0.5);
     }
@@ -755,9 +758,9 @@ body > div > pre {
 // End General Styles
 
 
-// 
+//
 // Footer
-// 
+//
 
 #footer {
   position: fixed;
@@ -792,7 +795,7 @@ body > div > pre {
   body.index #wrap {
     padding-top: 210px;
   }
-  
+
   body.tools #wrap,
   body.plugins #wrap,
   body.plugin_page_sleeky_settings #wrap {
@@ -875,21 +878,21 @@ body > div > pre {
         width: 100%;
       }
     }
-    
+
     table.tblSorter {
       min-width: 600px;
 
       // Icons
       $icons-list: stats, share, edit, delete;
       @each $icon in $icons-list {
-        td.actions .button_#{$icon} { 
+        td.actions .button_#{$icon} {
           background-size: 15px;
           margin: 3px;
         }
       }
     }
   }
-  
+
   #copybox {
     width: 100%;
   }
@@ -910,7 +913,7 @@ body > div > pre {
 
   .infos #wrap {
     margin-top: 30px;
-    
+
 
     #headers {
       li {
