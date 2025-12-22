@@ -82,3 +82,18 @@ $border-radius: 6px;
     }
 }
 
+.login {
+  input.button {
+    font-weight: 600;
+    padding: 10px 25px;
+    margin-top: 15px !important;
+    font-weight: 600;
+
+    @if ($theme == "light") {
+      background: $accent !important;
+    } else {
+      background: $light !important;
+      border-left: 7px solid $accent !important;
+    }
+  }
+}
