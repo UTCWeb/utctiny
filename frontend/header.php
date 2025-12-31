@@ -9,7 +9,7 @@ include 'functions.php';
     <meta http-equiv="X-UA-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo description ?>">
-    <link rel="icon" href="<?php echo favicon ?>?ver=20231214-2229">
+    <link rel="icon" href="<?php echo favicon ?>?ver=20251231-1231">
 
     <title><?php echo title ?></title>
 
