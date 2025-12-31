@@ -158,12 +158,14 @@ function shorten()
                                         aria-label="Paste a URL to shorten and share"
                                         aria-describedby="shorten-button"
                                         required
+                                        tabindex="1"
                                     >
                                     <input
                                         class="btn btn-primary text-uppercase py-2 px-4 mt-2 mt-md-0"
                                         type="submit"
                                         id="shorten-button"
                                         value="Shorten"
+                                        tabindex="3"
                                     />
                                 </div>
                                 <?php if (defined('enableCustomURL') && enableCustomURL): ?>
@@ -174,15 +176,16 @@ function shorten()
                                         role="button"
                                         aria-expanded="false"
                                         aria-controls="customise-link"
+                                        tabindex="2"
                                     >
                                         <img src="<?php echo YOURLS_SITE ?>/frontend/assets/svg/custom-url.svg" alt=""> Customize Link
                                     </a>
                                     <div class="collapse mt-2" id="customise-link">
                                         <div class="card card-body">
                                             <div class="d-flex align-items-center">
-                                            <span class="me-2">
-                                                <?php echo preg_replace("(^https?://)", "", YOURLS_SITE); ?>/
-                                            </span>
+                    <span class="me-2">
+                        <?php echo preg_replace("(^https?://)", "", YOURLS_SITE); ?>/
+                    </span>
                                                 <label for="keyword" class="visually-hidden">Custom keyword</label>
                                                 <input
                                                     type="text"
@@ -191,12 +194,14 @@ function shorten()
                                                     class="form-control form-control-sm text-uppercase"
                                                     placeholder="CUSTOM URL"
                                                     aria-label="Custom URL keyword"
+                                                    tabindex="4"
                                                 >
                                             </div>
                                         </div>
                                     </div>
                                 <?php endif; ?>
                             </form>
+
                         </div>
                     <?php endif; ?>
                 </div>
