@@ -170,7 +170,7 @@ function shorten()
                                 </div>
                                 <?php if (defined('enableCustomURL') && enableCustomURL): ?>
                                     <a
-                                        class="btn btn-sm btn-white text-black-50 text-uppercase"
+                                        class="btn btn-sm btn-white text-black-50 text-uppercase customize-link-toggle"
                                         data-bs-toggle="collapse"
                                         href="#customise-link"
                                         role="button"

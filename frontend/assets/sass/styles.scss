@@ -5,6 +5,14 @@
 $raleway: "Raleway", system-ui, -apple-system, "Segoe UI", Raleway, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $oswald: "Oswald", system-ui, -apple-system, "Segoe UI", Oswald, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+// Theme variables (safe defaults)
+$theme: "light" !default;
+$primary: #2a85b3 !default;
+// Accent color for light theme
+$accent: $primary !default;
+// Background color for light theme buttons
+$light: #ffffff !default;
+
 // Bootstrap Overrides
 $enable-negative-margins: true;
 $font-family-sans-serif: $raleway;
@@ -87,16 +95,16 @@ $border-radius: 6px;
         font-weight: 600;
         padding: 10px 25px;
         margin-top: 15px !important;
-        font-weight: 600;
 
         @if ($theme == "light") {
             background: $accent !important;
-        } else {
-        background: $light !important;
-        border-left: 7px solid $accent !important;
-    }
+        } @else {
+            background: $light !important;
+            border-left: 7px solid $accent !important;
+        }
     }
 }
+
 .visually-hidden {
     position: absolute !important;
     width: 1px !important;
@@ -118,4 +126,15 @@ $border-radius: 6px;
     overflow: visible !important;
     clip: auto !important;
     white-space: normal !important;
+}
+.customize-link-toggle {
+    transition: box-shadow 0.15s ease, outline 0.15s ease, background-color 0.15s ease;
+}
+
+.customize-link-toggle:focus-visible,
+.customize-link-toggle:focus {
+    outline: 3px solid $primary;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.15rem rgba($primary, 0.5);
+    background-color: rgba($primary, 0.08);
 }
