@@ -43,6 +43,7 @@ include 'functions.php';
             border-color: <?php echo adjustBrightness(colour, -15) ?>;
         }
     </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var customizeLink = document.querySelector('[href="#customise-link"][data-bs-toggle="collapse"]');
@@ -50,9 +51,9 @@ include 'functions.php';
 
             if (customizeLink && customizeInput) {
                 customizeLink.addEventListener('click', function () {
-                    // Delay to let Bootstrap finish the collapse animation
+                    // Wait for collapse animation
                     setTimeout(function () {
-                        if (customizeInput.offsetParent !== null) { // visible
+                        if (customizeInput.offsetParent !== null) {
                             customizeInput.focus();
                         }
                     }, 200);
@@ -60,4 +61,5 @@ include 'functions.php';
             }
         });
     </script>
+
 </head>

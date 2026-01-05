@@ -155,7 +155,7 @@ function shorten()
                                         id="url"
                                         class="form-control text-uppercase"
                                         placeholder="PASTE URL, SHORTEN and SHARE"
-                                        aria-label="Paste a URL to shorten and share"
+                                        aria-label="Paste a long URL to shorten"
                                         aria-describedby="shorten-button"
                                         required
                                         tabindex="1"
@@ -165,7 +165,7 @@ function shorten()
                                         type="submit"
                                         id="shorten-button"
                                         value="Shorten"
-                                        tabindex="3"
+                                        tabindex="4"
                                     />
                                 </div>
                                 <?php if (defined('enableCustomURL') && enableCustomURL): ?>
@@ -194,14 +194,13 @@ function shorten()
                                                     class="form-control form-control-sm text-uppercase"
                                                     placeholder="CUSTOM URL"
                                                     aria-label="Custom URL keyword"
-                                                    tabindex="4"
+                                                    tabindex="3"
                                                 >
                                             </div>
                                         </div>
                                     </div>
                                 <?php endif; ?>
                             </form>
-
                         </div>
                     <?php endif; ?>
                 </div>
