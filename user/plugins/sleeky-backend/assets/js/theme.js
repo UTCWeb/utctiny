@@ -20,7 +20,7 @@ $( document ).ready(function() {
   } else if ($('meta[name=sleeky_theme]').attr("content") == 'dark') {
     theme = "dark";
   }
-  
+
   console.log("Theme is", theme)
 
   // Update favicon
@@ -40,7 +40,7 @@ $( document ).ready(function() {
       $("#login").prepend(`<img class="login-logo" src="${url}/assets/img/utc-wordmark-reverse.svg">`);
     }
 
-    
+
   } else if ($("body").hasClass("index")) {
     // Index page
     console.log("Index page");
@@ -99,7 +99,7 @@ $( document ).ready(function() {
     }
   } else {
     console.warn("Unknown page");
-    
+
     handleNav();
   }
 
@@ -137,7 +137,7 @@ $( document ).ready(function() {
         // Update footer
         var content = $(this).html();
         var i = 77
-        var updated_content = "Running on" + content.slice(13, i) + '& <a href="https://sleeky.flynntes.com/" title="Sleeky">Sleeky</a>' + content.slice(i-1)
+        var updated_content = "Running on" + content.slice(13, i) + ' & <a href="https://sleeky.flynntes.com/" title="Sleeky">Sleeky</a>' + content.slice(i-0)
         $(this).html(updated_content);
       }
   });
