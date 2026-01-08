@@ -3,7 +3,7 @@
 Plugin Name: Sleeky Backend
 Plugin URI: https://sleeky.flynntes.com
 Description: UI overhaul of the YOURLS backend
-Version: 2.4.1
+Version: 2.6.0
 Author: Flynn Tesoriero
 Author URI: https://flynntes.com
 */
@@ -92,14 +92,14 @@ function sleeky_do_settings_page() {
 	if( isset( $_POST['theme_choice'] ) ) {
 		// Check nonce
 		yourls_verify_nonce( 'sleeky_settings' );
-		
+
 		// Process form
 		sleeky_settings_update();
 	}
 
 	// Get value from database
 	$theme_choice = yourls_get_option( 'theme_choice' );
-	
+
 	// Create nonce
 	$nonce = yourls_create_nonce( 'sleeky_settings' );
 
@@ -124,7 +124,7 @@ HTML;
 // Update option in database
 function sleeky_settings_update() {
 	$in = $_POST['theme_choice'];
-	
+
 	if( $in ) {
 		// Validate theme_choice. ALWAYS validate and sanitize user input.
 		// Here, we want an integer
@@ -135,7 +135,7 @@ function sleeky_settings_update() {
 		} else {
 			echo "Error";
 		}
-	
+
 	}
 }
 
