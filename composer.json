@@ -31,7 +31,8 @@
         "jakeasmith/http_build_url": "^1.0",
         "symfony/polyfill-mbstring": "^1.15",
         "symfony/polyfill-intl-idn": "^1.17",
-        "spatie/array-to-xml": "^3.4"
+        "spatie/array-to-xml": "^3.4",
+        "platformsh/laravel-bridge": "^2.2"
     },
     "require-dev": {
         "ext-ctype": "*"
