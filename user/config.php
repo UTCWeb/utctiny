@@ -36,6 +36,7 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
             'jty711',/* CG */
             'cpg381',/* SC */
             'xpn146',/* WG */
+            'rsn327',/* PD */
         ),
         'editor' => array(
             'ckg289',/* SS */
