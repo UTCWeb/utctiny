@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5787f60ad536cc14e43fd0eb078833f",
+    "content-hash": "58d57b4c8cbf687a308bed29678dcc59",
     "packages": [
         {
             "name": "aura/sql",
@@ -456,16 +456,16 @@
         },
         {
             "name": "maxmind/web-service-common",
-            "version": "v0.11.0",
+            "version": "v0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maxmind/web-service-common-php.git",
-                "reference": "5b9e3d3472213361eebdb3ab8879e91b8952091b"
+                "reference": "c309236b5a5555b96cf560089ec3cead12d845d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maxmind/web-service-common-php/zipball/5b9e3d3472213361eebdb3ab8879e91b8952091b",
-                "reference": "5b9e3d3472213361eebdb3ab8879e91b8952091b",
+                "url": "https://api.github.com/repos/maxmind/web-service-common-php/zipball/c309236b5a5555b96cf560089ec3cead12d845d2",
+                "reference": "c309236b5a5555b96cf560089ec3cead12d845d2",
                 "shasum": ""
             },
             "require": {
@@ -477,7 +477,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.*",
                 "phpstan/phpstan": "*",
-                "phpunit/phpunit": "^8.0 || ^9.0",
+                "phpunit/phpunit": "^10.0",
                 "squizlabs/php_codesniffer": "4.*"
             },
             "type": "library",
@@ -501,9 +501,9 @@
             "homepage": "https://github.com/maxmind/web-service-common-php",
             "support": {
                 "issues": "https://github.com/maxmind/web-service-common-php/issues",
-                "source": "https://github.com/maxmind/web-service-common-php/tree/v0.11.0"
+                "source": "https://github.com/maxmind/web-service-common-php/tree/v0.11.1"
             },
-            "time": "2025-11-20T18:33:17+00:00"
+            "time": "2026-01-13T17:56:03+00:00"
         },
         {
             "name": "onelogin/php-saml",
@@ -656,6 +656,51 @@
                 "source": "https://github.com/platformsh/config-reader-php/tree/3.0.1"
             },
             "time": "2025-02-25T17:22:15+00:00"
+        },
+        {
+            "name": "platformsh/laravel-bridge",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/platformsh/laravel-bridge.git",
+                "reference": "9ae82479a36dfb68d2b41bd34f7d3912b929024c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/platformsh/laravel-bridge/zipball/9ae82479a36dfb68d2b41bd34f7d3912b929024c",
+                "reference": "9ae82479a36dfb68d2b41bd34f7d3912b929024c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "platformsh-laravel-env.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Larry Garfield",
+                    "email": "larry@platform.sh"
+                }
+            ],
+            "description": "Bridge library for running Symfony Flex on Platform.sh",
+            "support": {
+                "issues": "https://github.com/platformsh/laravel-bridge/issues",
+                "source": "https://github.com/platformsh/laravel-bridge/tree/master"
+            },
+            "time": "2018-10-15T18:09:39+00:00"
         },
         {
             "name": "pomo/pomo",
@@ -905,29 +950,33 @@
         },
         {
             "name": "spatie/array-to-xml",
-            "version": "2.17.1",
+            "version": "3.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/array-to-xml.git",
-                "reference": "5cbec9c6ab17e320c58a259f0cebe88bde4a7c46"
+                "reference": "88b2f3852a922dd73177a68938f8eb2ec70c7224"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/5cbec9c6ab17e320c58a259f0cebe88bde4a7c46",
-                "reference": "5cbec9c6ab17e320c58a259f0cebe88bde4a7c46",
+                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/88b2f3852a922dd73177a68938f8eb2ec70c7224",
+                "reference": "88b2f3852a922dd73177a68938f8eb2ec70c7224",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "php": "^7.4|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.2",
                 "pestphp/pest": "^1.21",
-                "phpunit/phpunit": "^9.0",
                 "spatie/pest-plugin-snapshots": "^1.1"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Spatie\\ArrayToXml\\": "src"
@@ -953,7 +1002,7 @@
                 "xml"
             ],
             "support": {
-                "source": "https://github.com/spatie/array-to-xml/tree/2.17.1"
+                "source": "https://github.com/spatie/array-to-xml/tree/3.4.4"
             },
             "funding": [
                 {
@@ -965,7 +1014,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-26T08:22:07+00:00"
+            "time": "2025-12-15T09:00:41+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
