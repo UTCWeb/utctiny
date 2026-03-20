@@ -12,11 +12,7 @@
  * @noinspection PhpComposerExtensionStubsInspection
  */
 
-// namespace chillerlan\QRCode;
-
 use chillerlan\QRCode\Output\{QRCodeOutputException, QRImage};
-
-use function imagecopyresampled, imagecreatefrompng, imagesx, imagesy, is_file, is_readable;
 
 /**
  * @property \chillerlan\QRCodeExamples\LogoOptions $options

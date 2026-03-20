@@ -45,13 +45,18 @@
 		copyBtn.addEventListener('click', function(event) {
 			copyTextToClipboard(event.target.dataset.shorturl);
 		});
+
+		// Move focus to copy button when result screen is shown
+		window.addEventListener('load', function () {
+			copyBtn.focus();
+		});
 	}
 
 	const closeShortenedLinkScreenButton = document.querySelector('button#close-shortened-screen');
 
 	if (closeShortenedLinkScreenButton) {
 		closeShortenedLinkScreenButton.addEventListener('click', function(event) {
-			window.location.href=window.location.href;
+			window.location.href = window.location.href;
 		});
 	}
 </script>

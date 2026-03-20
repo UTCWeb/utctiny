@@ -9,7 +9,7 @@ include 'functions.php';
     <meta http-equiv="X-UA-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo description ?>">
-    <link rel="icon" href="<?php echo favicon ?>?ver=20231214-2229">
+    <link rel="icon" href="<?php echo favicon ?>?ver=20251231-1231">
 
     <title><?php echo title ?></title>
 
@@ -43,4 +43,23 @@ include 'functions.php';
             border-color: <?php echo adjustBrightness(colour, -15) ?>;
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var customizeLink = document.querySelector('[href="#customise-link"][data-bs-toggle="collapse"]');
+            var customizeInput = document.getElementById('keyword');
+
+            if (customizeLink && customizeInput) {
+                customizeLink.addEventListener('click', function () {
+                    // Wait for collapse animation
+                    setTimeout(function () {
+                        if (customizeInput.offsetParent !== null) {
+                            customizeInput.focus();
+                        }
+                    }, 200);
+                });
+            }
+        });
+    </script>
+
 </head>

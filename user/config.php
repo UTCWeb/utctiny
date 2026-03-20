@@ -30,11 +30,13 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     $amp_default_role = "anonymous";
     $amp_role_assignment = array(
         'administrator' => array(
+            'admin',
             'utc123',/* UC */
             'xjm218',/* BH */
             'jty711',/* CG */
             'cpg381',/* SC */
             'xpn146',/* WG */
+            'rsn327',/* PD */
         ),
         'editor' => array(
             'ckg289',/* SS */
@@ -68,6 +70,19 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
     /** A hash used to encrypt cookies. This one is used only local dev
      ** Hint: copy from http://yourls.org/cookie */
     define( 'YOURLS_COOKIEKEY', 'YOURLS_LOCAL_COOKIEKEY' );
+
+    /*
+     ** Auth Manager Plus plugin configuration (LOCAL)
+     ** Role Assignments per user
+     */
+    $amp_default_role = "anonymous";
+    $amp_role_assignment = array(
+        'administrator' => array(
+            'admin',  // this is the DDEV local admin user
+        ),
+        // Add any other local test users/roles here if needed
+    );
+
 }
 
 // ---------- Environment-aware YOURLS_DEBUG ----------
