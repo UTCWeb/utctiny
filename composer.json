@@ -34,7 +34,8 @@
         "spatie/array-to-xml": "^3.4",
         "yourls/seans-qrcode": "dev-develop as 1.x-dev",
         "yourls/yourls-saml": "dev-develop as 1.x-dev",
-        "platformsh/laravel-bridge": "^1.1"
+        "platformsh/laravel-bridge": "^1.1",
+        "chillerlan/php-qrcode": "^5.0.5"
     },
     "repositories": [
         {
