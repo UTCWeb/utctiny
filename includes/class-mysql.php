@@ -4,7 +4,7 @@
  * Connect to DB
  *
  * @since 1.0
- * @param string $context Optional context. Default: ''.
+ * @param string $context Optional context. Default: ''. See yourls_get_db()
  * @return \YOURLS\Database\YDB
  */
 function yourls_db_connect($context = '') {
@@ -60,11 +60,7 @@ function yourls_db_connect($context = '') {
     $ydb->init();
 
     // Past this point, we're connected
-    $msg = 'Connected to ' . $dsn;
-    if ($context !== '') {
-        $msg .= ', context: ' . $context;
-    }
-    yourls_debug_log( $msg );
+    yourls_debug_log( 'Connected to ' . $dsn );
 
     yourls_debug_mode( YOURLS_DEBUG );
 
@@ -96,8 +92,8 @@ function yourls_db_connect($context = '') {
  */
 function yourls_get_db($context = '') {
     // Allow plugins to short-circuit the whole function
-    $pre = yourls_apply_filter( 'shunt_get_db', false, $context );
-    if ( false !== $pre ) {
+    $pre = yourls_apply_filter( 'shunt_get_db', yourls_shunt_default(), $context );
+    if ( yourls_shunt_default() !== $pre ) {
         return $pre;
     }
 
