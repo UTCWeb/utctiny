@@ -73,7 +73,7 @@ class Red_Csv_File extends Red_FileIO
 
 	function load( $data, $filename ) {
 
-        $ydb = yourls_get_db();
+        $ydb = yourls_get_db( 'write-import_csv' );
 
 		$count = 0;
 		$file  = fopen( $filename, 'r' );

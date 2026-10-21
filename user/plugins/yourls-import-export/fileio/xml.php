@@ -54,7 +54,7 @@ endif;
 
 	function load ( $data, $filename ) {
 
-        $ydb = yourls_get_db();
+        $ydb = yourls_get_db( 'write-import_xml' );
 
 		$count = 0;
 
