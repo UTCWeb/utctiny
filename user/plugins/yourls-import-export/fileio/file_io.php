@@ -7,7 +7,7 @@ class Red_FileIO
 	var $items = array();
 
 	function export ( $type ) {
-		$ydb = yourls_get_db();
+		$ydb = yourls_get_db( 'read-export_urls' );
 
 		// Variables
 		$table_url = YOURLS_DB_TABLE_URL;
