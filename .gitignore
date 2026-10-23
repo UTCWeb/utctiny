@@ -25,3 +25,6 @@ pvirtualmin/
 
 #IDE
 .idea/
+
+# DDEV environment variable file
+.ddev/.env
