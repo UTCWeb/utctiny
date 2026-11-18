@@ -53,6 +53,7 @@ function setTheme($theme) {
 	if ($theme == "light") {
 		echo <<<HEAD
 			<link rel="stylesheet" href="$url/assets/css/light.css">
+			<link rel="stylesheet" href="$url/assets/css/delete-dialog.css">
 			<link rel="stylesheet" href="$url/assets/css/animate.min.css">
 			<script src="$url/assets/js/theme.js"></script>
 			<meta name="sleeky_theme" content="light">
@@ -60,6 +61,7 @@ HEAD;
 	} else if ($theme == "dark") {
 		echo <<<HEAD
 			<link rel="stylesheet" href="$url/assets/css/dark.css">
+			<link rel="stylesheet" href="$url/assets/css/delete-dialog.css">
 			<link rel="stylesheet" href="$url/assets/css/animate.min.css">
 			<script src="$url/assets/js/theme.js"></script>
 			<meta name="sleeky_theme" content="dark">
